@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    !para el juego
+    <color name="box_color">#ffff00</color>
+    <color name="box_on_target_color">#fe0002</color>
+    <color name="target_color">#d6fe0a</color>
+    <color name="brick_color">#bdbebf</color>
+    <color name="hall_color">#0001ff</color>
+    <color name="undefined_color">#303030</color>
+    <color name="player_color">#ff00f7</color>
+
 </resources>
