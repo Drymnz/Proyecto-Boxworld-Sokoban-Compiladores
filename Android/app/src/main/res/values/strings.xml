@@ -6,4 +6,6 @@
     ! lista de id
     <string name="id_boton_compilador_main">BotonCompiladorActivity</string>
 
+    ! name play
+    <string name="name_play_game">play_game</string>
 </resources>
