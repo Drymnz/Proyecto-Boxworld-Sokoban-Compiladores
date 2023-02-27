@@ -2,19 +2,17 @@ package com.example.boxworld_sokoban.juego
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TableLayout
-import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import com.example.boxworld_sokoban.R
 
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.BitmapDrawable
+import android.text.TextWatcher
 import android.util.Log
+import android.widget.*
 
 class Juego : AppCompatActivity() {
 
@@ -23,6 +21,10 @@ class Juego : AppCompatActivity() {
     private var posXPlay:Int = 5
     private var posYPlay:Int = 5
     private var numBox:Int = 0
+    /**
+    IMPORTANTE IMPLMEMENTAR LO DE QUE EMPUJER UNA CAJA ACTIVA, ME POSICION EN EL TAGER Y DESPUES --> PUDE SER CON UN LISTADO DE TAGET IGUAL DE MANERA
+     COMO RECORA SI HAY CAJAS ACTIVAS PARA NUM BOX Y LA VICTORIA
+    * */
 
     private val listBoxGameMap = ArrayList<ArrayList<BoxGame>>()
 
@@ -34,19 +36,13 @@ class Juego : AppCompatActivity() {
         this.table_game = findViewById<TableLayout>(R.id.table_game)
         testFillInBox()//test
         loadMap()//load map
+        val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
+        var buttonA:Button = findViewById(R.id.BotonCompiladorGame)
         //solucion
-        moverPlay(ListMovePlay.PUSH_DOWN)
-        moverPlay(ListMovePlay.TOP)
-        moverPlay(ListMovePlay.PUSH_LEFT)
-        moverPlay(ListMovePlay.PUSH_LEFT)
-        moverPlay(ListMovePlay.RIGHT)
-        moverPlay(ListMovePlay.PUSH_TOP)
-        moverPlay(ListMovePlay.PUSH_TOP)
-        moverPlay(ListMovePlay.DOWN)
-        moverPlay(ListMovePlay.RIGHT)
-        moverPlay(ListMovePlay.PUSH_RIGHT)
     }
-    //code for load map
+    /**
+     * code for load map
+    * */
     public fun loadMap(){
         for (item in this.listBoxGameMap){
             val row_one_pruea:TableRow = TableRow(this)
@@ -57,7 +53,10 @@ class Juego : AppCompatActivity() {
         }
     }
 
-    //enter an int to select type of image to load
+    /**
+     * enter a ListBox type to receive a BoxGame of the requested type
+     * @ListBox
+     * */
     @SuppressLint("SuspiciousIndentation")
     private fun createBox(type:ListBox): BoxGame {
         var returnBox:ImageView = ImageView(this)
@@ -108,7 +107,9 @@ class Juego : AppCompatActivity() {
         var newBoxGame = BoxGame(type,returnBox)
         return newBoxGame
     }
-
+    /**
+     * enter a ListBox for move the player
+     **/
     public fun moverPlay (type:ListMovePlay){
         when (type) {
             ListMovePlay.TOP->//top
@@ -313,10 +314,11 @@ class Juego : AppCompatActivity() {
         }
     }
 
-    /*
+    /**
+     * change of box
     @befeorePosY
-        @befeorePosX
-            @nextPosY
+    @befeorePosX
+    @nextPosY
     @nextPosx
     * */
     private fun switchBoxGame(beforePosY:Int,beforePosX:Int,nextPosY:Int,nextPosX:Int){
@@ -508,6 +510,15 @@ class Juego : AppCompatActivity() {
         this.listBoxGameMap.add(row_eighth)
         this.listBoxGameMap.add(row_ninth)
         this.listBoxGameMap.add(row_tenth)
+    }
+    /**
+     * analyze and move the player
+    * */
+    fun analisar(view: View){
+        val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
+        var buttonA:Button = findViewById(R.id.BotonCompiladorGame)
+        var anly:Analyze = Analyze(nameTextField.text.toString(),this)
+        anly.runAnaly()
     }
 }
 

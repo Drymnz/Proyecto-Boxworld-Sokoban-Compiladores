@@ -1,0 +1,107 @@
+/*************************************CODE******************************************************/
+package com.cunoc.JFlex_Cup.HTML;
+
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cunoc.Server.Console;
+    parser code {:
+        private double contador= 0;
+        private Symbol s;
+        private int errorCounter= 0;
+
+    SicHTML(LexicoHTML lexico){
+        super(lexico);
+    }
+    public void syntax_error(Symbol cur_token) {
+        errorCounter++;
+        System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
+        Console.ConsoleText.append("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
+    }
+    public Symbol getSymbol(){
+        return this.s;
+    }
+    public int getErrorCounter(){
+        return this.errorCounter;
+    }
+:}
+/*************************************TERMINALES******************************************************/
+terminal INICIO_WORLDS,FINAL_WORLDS;
+terminal INICIO_WORLD,FINAL_WORLD;
+terminal INICIO_NAME,FINAL_NAME,INICIO_ROWS,FINAL_ROWS,INICIO_COLS,FINAL_COLS;
+terminal INICIO_CONFIG,FINAL_CONFIG,INICIO_BOARD,FINAL_BOARD;
+terminal INICIO_BOXES,FINAL_BOXES,INICIO_TARGETS,FINAL_TARGETS,INICIO_PLAYER,FINAL_PLAYER;
+terminal INICIO_POSX,FINAL_POSX,INICIO_POSY,FINAL_POSY;
+terminal INICIO_BOX_COLOR,FINAL_BOX_COLOR,INICIO_BOX_COLOR_ON,FINAL_BOX_COLOR_ON,INICIO_TARGET_COLOR,FINAL_TARGET_COLOR;//color
+terminal INICIO_BRICK_COLOR,FINAL_BRICK_COLOR,INICIO_HALL_COLOR,FINAL_HALL_COLOR,INICIO_UNDEFINED_COLOR,FINAL_UNDEFINED_COLOR;
+terminal INICIO_PLAYER_COLOR, FINAL_PLAYER_COLOR,INICIO_TYPE,FINAL_TYPE;
+/****************NUMERICOS***********************/
+terminal BRICK,HALL;//pasio o ladrillo
+terminal String ENTERO,CARACTER,COLOR; /*DATOS*/
+/*************************************NO TERMINALES******************************************************/
+non terminal inicio,accion;
+non terminal datos_mapa,atributos;
+non terminal color,bucle_color;
+non terminal pos,tipo_board,tipo_poss_dar;
+non terminal typo_poss,solo_poss,varios_bloques;
+/*************************************GRAMATICA******************************************************/
+start with inicio;
+/******INICIO DE TODO *****/
+inicio ::= INICIO_WORLDS accion FINAL_WORLDS;
+
+accion ::=
+    INICIO_WORLD datos_mapa FINAL_WORLD accion
+    |
+    ;   
+/*****************CREAR MUNDO*************************/
+datos_mapa ::=
+    datos_mapa atributos
+    |atributos
+    ;
+atributos ::=
+    INICIO_NAME CARACTER FINAL_NAME
+    |INICIO_ROWS ENTERO FINAL_ROWS
+    |INICIO_COLS ENTERO FINAL_COLS
+    |INICIO_CONFIG  bucle_color FINAL_CONFIG
+    |INICIO_BOARD tipo_poss_dar  FINAL_BOARD
+    |INICIO_TARGETS solo_poss FINAL_TARGETS
+    |INICIO_PLAYER solo_poss FINAL_PLAYER
+    |INICIO_BOXES solo_poss FINAL_BOXES
+    ;
+/*****************posicion*************************/
+solo_poss ::=
+    solo_poss  pos
+    |pos
+    ;
+pos ::=
+    INICIO_POSX ENTERO:a FINAL_POSX
+    |INICIO_POSY ENTERO:a FINAL_POSY
+    ;
+tipo_poss_dar ::=
+    tipo_poss_dar typo_poss
+    |typo_poss
+    ;
+typo_poss ::= 
+    pos
+    |INICIO_TYPE  tipo_board FINAL_TYPE
+    ;
+tipo_board ::=
+    HALL
+    |BRICK
+    ;
+/*****************color*************************/
+bucle_color ::=
+    bucle_color color
+    |color
+    ;
+color ::=
+    INICIO_BOX_COLOR COLOR FINAL_BOX_COLOR
+    |INICIO_BOX_COLOR_ON COLOR   FINAL_BOX_COLOR_ON
+    |INICIO_TARGET_COLOR  COLOR FINAL_TARGET_COLOR
+    |INICIO_BRICK_COLOR  COLOR  FINAL_BRICK_COLOR
+    |INICIO_HALL_COLOR  COLOR FINAL_HALL_COLOR
+    |INICIO_UNDEFINED_COLOR COLOR  FINAL_UNDEFINED_COLOR
+    |INICIO_PLAYER_COLOR COLOR FINAL_PLAYER_COLOR
+    ;

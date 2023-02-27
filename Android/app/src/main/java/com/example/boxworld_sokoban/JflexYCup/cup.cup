@@ -1,0 +1,199 @@
+/*************************************COD            ListMovePlay.DOWN
+E******************************************************/
+package com.example.boxworld_sokoban.JflexYCup;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import com.example.boxworld_sokoban.juego.ListMovePlay;
+
+
+    parser code {:
+
+	public parser(Lexema lexer) {
+        super(lexer);
+    }
+            private ArrayList<ListMovePlay> listMove = new ArrayList<>();
+            private ListMovePlay tipoMovimiento;
+            private int contador;
+
+            public ArrayList<ListMovePlay> getListMoveGame(){
+                return this.listMove;
+            }
+
+        public void syntax_error(Symbol cur_token) {
+        //System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
+        //System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
+        }
+
+        public void unrecovered_syntax_error(Symbol cur_token) {
+            if (cur_token.sym == sym.EOF) {
+             System.out.println("public void unrecoveredsyntax_error!!!!!!!!!!!!!!");
+            }
+        }
+    /**
+     * ***CODE*******
+     */
+
+    /**
+     * ***END CODE*******
+     */
+:}
+/*************************************TERMINALES******************************************************/
+terminal PUNTOYCOMA; /*PUNTUACION*/
+terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;/*SIMBOLOS DE OPERACION*/
+terminal PARENTESIS_A,PARENTESIS_C;/*AGRUPACION*/
+terminal String ENTERO,DECIMAL; /*DATOS*/
+terminal UP,LEFT,RIGHT,PUSH,DOWN;/*Acciones*/
+/*************************************NO TERMINALES******************************************************/
+non terminal String o,j;/*para el uso de operaciones aritmeticas*/
+non terminal inicio,mover;
+non terminal tipo_mover,mover_jugador,mover_caja,contador_mover,agrupar;
+/*************************************PRECEDENCIA******************************************************/
+precedence left SUMAR, RESTAR;
+precedence left MULTIPLICAR, DIVIDIR;
+/*************************************GRAMATICA******************************************************/
+start with inicio;
+/******operaciones matematicas*****/
+inicio ::= mover
+    |
+    ;
+mover ::= mover tipo_mover
+    |tipo_mover
+    ;
+tipo_mover ::= agrupar
+    {:
+                            if(contador< 0){
+                                                    contador = contador * -1;
+                                                    switch (tipoMovimiento){
+                                                        case DOWN:
+                                                            tipoMovimiento =  ListMovePlay.TOP;
+                                                            break;
+                                                        case TOP:
+                                                            tipoMovimiento = ListMovePlay.DOWN;
+                                                            break;
+                                                        case RIGHT:
+                                                            tipoMovimiento  = ListMovePlay.LEFT;
+                                                            break;
+                                                        case LEFT:
+                                                            tipoMovimiento  = ListMovePlay.RIGHT;
+                                                            break;
+                                                        default:
+                                                            // Default secuencia de sentencias.
+                                                    }
+                                                }
+                                    for(int i = 0; i <contador; i++)
+                                    {
+                                        listMove.add(tipoMovimiento);
+                                    }
+    :}
+    |mover_caja
+        {:
+            		switch (tipoMovimiento){
+                        case DOWN:
+                            tipoMovimiento = ListMovePlay.PUSH_DOWN;
+                            break;
+                        case TOP:
+                            tipoMovimiento  = ListMovePlay.PUSH_TOP;
+                            break;
+                        case RIGHT:
+                            tipoMovimiento  = ListMovePlay.PUSH_RIGHT;
+                            break;
+                        case LEFT:
+                            tipoMovimiento  = ListMovePlay.PUSH_LEFT;
+                            break;
+                        default:
+                            // Default secuencia de sentencias.
+                    }
+                   if(contador< 0){
+                                           contador = contador * -1;
+                                           switch (tipoMovimiento){
+                                               case DOWN:
+                                                   tipoMovimiento  = ListMovePlay.PUSH_TOP;
+                                                   break;
+                                               case TOP:
+                                                   tipoMovimiento  = ListMovePlay.PUSH_DOWN;
+                                                   break;
+                                               case RIGHT:
+                                                   tipoMovimiento = ListMovePlay.PUSH_LEFT;
+                                                   break;
+                                               case LEFT:
+                                                   tipoMovimiento  = ListMovePlay.PUSH_RIGHT;
+                                                   break;
+                                               default:
+                                                   // Default secuencia de sentencias.
+                                           }
+                                       }
+                            for(int i = 0; i <contador; i++)
+                            {
+                                listMove.add(tipoMovimiento);
+                            }
+        :}
+    ;
+agrupar ::= mover_jugador contador_mover ;
+mover_jugador ::=
+    LEFT{:
+    tipoMovimiento = ListMovePlay.LEFT;
+    :}
+    |RIGHT
+    {:
+        tipoMovimiento = ListMovePlay.RIGHT;
+    :}
+    |DOWN
+        {:
+            tipoMovimiento = ListMovePlay.DOWN;
+        :}
+    |UP
+        {:
+            tipoMovimiento = ListMovePlay.TOP;
+        :}
+    ;
+contador_mover ::= PARENTESIS_A j PARENTESIS_C PUNTOYCOMA;
+mover_caja ::= PUSH agrupar
+    ;
+/******operaciones matematicas*****/
+j ::= o:a {:
+    RESULT = a;
+    double numeroUno= Double.valueOf(a);
+    contador = (int) numeroUno;
+           :} /*A QUI ESTA EL TOTAL DE LA OPERACION*/
+           | error
+           {:
+           :}
+           ;
+o ::= o:a SUMAR o:b {:
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno-numeroDos;
+                    RESULT = String.valueOf(resultado);
+                    :}
+
+|  o:a RESTAR o:b {:
+                double numeroUno= Double.valueOf(a);
+                double numeroDos= Double.valueOf(b);
+                double resultado = numeroUno-numeroDos;
+                RESULT = String.valueOf(resultado);
+                    :}
+
+|  o:a DIVIDIR o:b {:
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno/numeroDos;
+                    RESULT = String.valueOf(resultado);
+                    :}
+
+|  o:a MULTIPLICAR o:b {:
+                    double numeroUno= Double.valueOf(a);
+                    double numeroDos= Double.valueOf(b);
+                    double resultado = numeroUno*numeroDos;
+                    RESULT = String.valueOf(resultado);
+                    :}
+
+| PARENTESIS_A o:a {: RESULT = a; :} PARENTESIS_C
+| ENTERO:a {: RESULT = a; :}
+| DECIMAL:a {: RESULT = a; :}
+| RESTAR ENTERO:a {:
+                    double numeroUno= Double.valueOf(a);
+                    numeroUno = numeroUno*-1;
+                    RESULT = String.valueOf(numeroUno);
+ :}
+;

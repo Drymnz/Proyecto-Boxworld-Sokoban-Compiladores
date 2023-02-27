@@ -8,8 +8,8 @@
 
     <ScrollView
         android:id="@+id/scroll_V"
-        android:layout_width="331dp"
-        android:layout_height="422dp"
+        android:layout_width="626dp"
+        android:layout_height="193dp"
         android:layout_marginTop="28dp"
         android:layout_weight="1"
         android:scrollbars="none"
@@ -31,21 +31,22 @@
     </ScrollView>
 
 
+
     <Button
         android:id="@+id/BotonCompiladorGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="analisar"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintStart_toStartOf="parent" />
+        />
 
     <AutoCompleteTextView
         android:id="@+id/TextGameMove"
-        android:layout_width="327dp"
-        android:layout_height="187dp"
+        android:layout_width="627dp"
+        android:layout_height="74dp"
         android:layout_marginBottom="8dp"
         android:text="AutoCompleteTextView"
         app:layout_constraintBottom_toTopOf="@+id/BotonCompiladorGame"
