@@ -14,13 +14,9 @@ import com.cunoc.Server.Console;
 %cup
 %public
 %{
-    private  List<Token> listComments =  new ArrayList<>();
     private String report = "";
-    private void addComments(){
-        listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
-    }
+
     private void print(String token){
-        //Console.ConsoleText.append("\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">");
         report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
@@ -29,10 +25,6 @@ import com.cunoc.Server.Console;
     public void setReport(String repor){
         this.report = repor;
     }
-    
-    public List<Token>  getlistComments(){
-        return this.listComments;
-    };
 %}
 CARACTER = ([a-z]|"_")[a-zA-Z][a-zA-Z0-9]+
 ENTERO = [0-9]*
@@ -41,8 +33,8 @@ espacio =[\n | \r | \t | \f | \b]+
 %%
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
-"</" ~"/>"          {addComments();/*COMENTARIO*/}
-"<?" ~"?>"          {addComments();/*COMENTARIO*/}
+"</" ~"/>"          {/*COMENTARIO*/}
+"<?" ~"?>"          {/*COMENTARIO*/}
 {espacio}           {/*ESPACIOS*/}
 /*FINAL INGNORAR*/
 "<worlds>"			{print("worlds"    );return new Symbol(sym.INICIO_WORLDS ,yyline,yycolumn, (yytext())); }
@@ -59,18 +51,18 @@ espacio =[\n | \r | \t | \f | \b]+
 "<config>"			{print("config"    );return new Symbol(sym.INICIO_CONFIG ,yyline,yycolumn, (yytext())); }
 "</config>"			{print("FINAL_config"     );return new Symbol(sym.FINAL_CONFIG  ,yyline,yycolumn, (yytext())); }
 /*COLOR*/
-"<box_color>"			{print("box_color"    );return new Symbol(sym.INICIO_BOX_COLOR ,yyline,yycolumn, (yytext())); }
-"</box_color>"			{print("FINAL_box_color"     );return new Symbol(sym.FINAL_BOX_COLOR  ,yyline,yycolumn, (yytext())); }
-"<box_on_target_color>"			{print("box_on_target_color"    );return new Symbol(sym.INICIO_BOX_COLOR_ON ,yyline,yycolumn, (yytext())); }
-"</box_on_target_color>"			{print("FINAL_box_on_target_color"     );return new Symbol(sym.FINAL_BOX_COLOR_ON  ,yyline,yycolumn, (yytext())); }
+"<box_color>"			    {print("box_color"    );return new Symbol(sym.INICIO_BOX_COLOR ,yyline,yycolumn, (yytext())); }
+"</box_color>"			    {print("FINAL_box_color"     );return new Symbol(sym.FINAL_BOX_COLOR  ,yyline,yycolumn, (yytext())); }
+"<box_on_target_color>"		{print("box_on_target_color"    );return new Symbol(sym.INICIO_BOX_COLOR_ON ,yyline,yycolumn, (yytext())); }
+"</box_on_target_color>"	{print("FINAL_box_on_target_color"     );return new Symbol(sym.FINAL_BOX_COLOR_ON  ,yyline,yycolumn, (yytext())); }
 "<target_color>"			{print("target_color"    );return new Symbol(sym.INICIO_TARGET_COLOR ,yyline,yycolumn, (yytext())); }
 "</target_color>"			{print("FINAL_target_color"     );return new Symbol(sym.FINAL_TARGET_COLOR  ,yyline,yycolumn, (yytext())); }
-"<brick_color>"			{print("brick_color"    );return new Symbol(sym.INICIO_BRICK_COLOR ,yyline,yycolumn, (yytext())); }
+"<brick_color>"			    {print("brick_color"    );return new Symbol(sym.INICIO_BRICK_COLOR ,yyline,yycolumn, (yytext())); }
 "</brick_color>"			{print("FINAL_brick_color"     );return new Symbol(sym.FINAL_BRICK_COLOR  ,yyline,yycolumn, (yytext())); }
-"<hall_color>"			{print("hall_color"    );return new Symbol(sym.INICIO_HALL_COLOR ,yyline,yycolumn, (yytext())); }
-"</hall_color>"			{print("FINAL_hall_color"     );return new Symbol(sym.FINAL_HALL_COLOR  ,yyline,yycolumn, (yytext())); }
+"<hall_color>"			    {print("hall_color"    );return new Symbol(sym.INICIO_HALL_COLOR ,yyline,yycolumn, (yytext())); }
+"</hall_color>"			    {print("FINAL_hall_color"     );return new Symbol(sym.FINAL_HALL_COLOR  ,yyline,yycolumn, (yytext())); }
 "<undefined_color>"			{print("undefined_color"    );return new Symbol(sym.INICIO_UNDEFINED_COLOR ,yyline,yycolumn, (yytext())); }
-"</undefined_color>"			{print("FINAL_undefined_color"     );return new Symbol(sym.FINAL_UNDEFINED_COLOR  ,yyline,yycolumn, (yytext())); }
+"</undefined_color>"	    {print("FINAL_undefined_color"     );return new Symbol(sym.FINAL_UNDEFINED_COLOR  ,yyline,yycolumn, (yytext())); }
 "<player_color>"			{print("player_color"    );return new Symbol(sym.INICIO_PLAYER_COLOR ,yyline,yycolumn, (yytext())); }
 "</player_color>"			{print("FINAL_player_color"     );return new Symbol(sym.FINAL_PLAYER_COLOR  ,yyline,yycolumn, (yytext()));}
 /*BLOQUES*/
@@ -94,7 +86,7 @@ espacio =[\n | \r | \t | \f | \b]+
 "HALL"		    {print("HALL"  );return new Symbol(sym.HALL,yyline,yycolumn, (yytext())); }
 /*FINAL PALABRAS CLAVES*/
 /*Token*/
-{CARACTER}            	{print("{ID}" );return new Symbol(sym.CARACTER,yyline,yycolumn, (yytext())); }
+{CARACTER}          {print("{ID}" );return new Symbol(sym.CARACTER,yyline,yycolumn, (yytext())); }
 {ENTERO}            {print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
 {COLOR}             {print(yytext() );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/

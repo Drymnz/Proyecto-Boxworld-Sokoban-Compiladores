@@ -441,7 +441,7 @@ class CUP$parser$actions {
 		
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
-                    double resultado = numeroUno-numeroDos;
+                    double resultado = numeroUno+numeroDos;
                     RESULT = String.valueOf(resultado);
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);

@@ -163,7 +163,7 @@ j ::= o:a {:
 o ::= o:a SUMAR o:b {:
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
-                    double resultado = numeroUno-numeroDos;
+                    double resultado = numeroUno+numeroDos;
                     RESULT = String.valueOf(resultado);
                     :}
 

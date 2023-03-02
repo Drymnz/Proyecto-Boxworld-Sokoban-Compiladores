@@ -52,7 +52,7 @@ start with inicio;
 inicio ::= INICIO_WORLDS accion FINAL_WORLDS;
 
 accion ::=
-    INICIO_WORLD datos_mapa FINAL_WORLD accion
+    INICIO_WORLD datos_mapa FINAL_WORLD  accion
     |
     ;   
 /*****************CREAR MUNDO*************************/

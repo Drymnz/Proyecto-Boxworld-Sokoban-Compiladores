@@ -6,8 +6,6 @@
 package com.cunoc.JFlex_Cup.HTML;
 
 import java_cup.runtime.*;
-import java.util.ArrayList;
-import java.util.List;
 import com.cunoc.Server.Console;
 import java_cup.runtime.XMLElement;
 

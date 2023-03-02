@@ -428,14 +428,12 @@ public class LexicoJson implements java_cup.runtime.Scanner {
   /* user code: */
     private  List<Token> listComments =  new ArrayList<>();
     private String report = "";
-
     private void addComments(){
         listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
     }
     private void print(String token){
         //Console.ConsoleText.append("\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">");
-        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
-        System.out.println(token);
+        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
         return this.report;

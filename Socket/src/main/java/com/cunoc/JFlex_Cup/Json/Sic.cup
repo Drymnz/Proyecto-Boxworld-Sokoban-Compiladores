@@ -4,13 +4,32 @@ package com.cunoc.JFlex_Cup.Json;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
-import java.util.List;
+import com.cunoc.Map.ListSquare;
+import com.cunoc.Map.Square;
+import com.cunoc.Server.Console;
+
 
 import com.cunoc.Server.Console;
     parser code {:
+
         private double contador= 0;
         private Symbol s;
         private int errorCounter= 0;
+        private ListSquare typeSquare = ListSquare.UNDEFINED;
+        private String name = null;
+        private int rows = -1;
+        private int cols = -1;
+        private int possY = -1;
+        private int possX = -1;
+        //color
+        private String BOX_COLOR = null;
+        private String BOX_ON_COLOR = null;
+        private String TARGET_COLOR = null;
+        private String BRICK_COLOR = null;
+        private String HALL_COLOR = null;
+        private String UNDEFINED_COLOR = null;
+        private String PLAY_COLOR = null;
+        private ArrayList<Square> listSquare = new ArrayList();
 
     SicJSon(LexicoJson lexico){
         super(lexico);
@@ -26,6 +45,92 @@ import com.cunoc.Server.Console;
     public int getErrorCounter(){
         return this.errorCounter;
     }
+     private void addSquare(){
+        listSquare.add(new Square(typeSquare,possX,possY));
+        //System.out.println(typeSquare.toString()+"possx"+possX+"possY"+possY);
+    }
+    private void prinFinal(){
+        //System.out.println(typeSquare.toString()+"possx"+possX+"possY"+possY);
+        System.out.println("contador : "+contador);
+        System.out.println("errorCounter : "+errorCounter);
+        System.out.println("typeSquare : "+typeSquare);
+        System.out.println("name : "+name);
+        System.out.println("rows : "+rows);
+        System.out.println("cols : "+cols);
+        System.out.println("possY : "+possY);
+        System.out.println("possX : "+possX);
+        System.out.println("BOX_COLOR : "+BOX_COLOR);
+        System.out.println("BOX_ON_COLOR : "+BOX_ON_COLOR);
+        System.out.println("TARGET_COLOR : "+TARGET_COLOR);
+        System.out.println("BRICK_COLOR : "+BRICK_COLOR);
+        System.out.println("HALL_COLOR : "+HALL_COLOR);
+        System.out.println("UNDEFINED_COLOR : "+UNDEFINED_COLOR);
+        System.out.println("PLAY_COLOR : "+PLAY_COLOR);
+        System.out.println("listSquare : "+listSquare.size());
+        for (int index = 0; index < listSquare.size(); index++) {
+          System.out.println("Square #"+index+":"+listSquare.get(index).toString());
+        }
+    }
+    
+    /*GET*/
+    
+public ListSquare getTypeSquare() {
+      return typeSquare;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public int getRows() {
+      return rows;
+    }
+
+    public int getCols() {
+      return cols;
+    }
+
+    public int getPossY() {
+      return possY;
+    }
+
+    public int getPossX() {
+      return possX;
+    }
+
+    public String getBOX_COLOR() {
+      return BOX_COLOR;
+    }
+
+    public String getBOX_ON_COLOR() {
+      return BOX_ON_COLOR;
+    }
+
+    public String getTARGET_COLOR() {
+      return TARGET_COLOR;
+    }
+
+    public String getBRICK_COLOR() {
+      return BRICK_COLOR;
+    }
+
+    public String getHALL_COLOR() {
+      return HALL_COLOR;
+    }
+
+    public String getUNDEFINED_COLOR() {
+      return UNDEFINED_COLOR;
+    }
+
+    public String getPLAY_COLOR() {
+      return PLAY_COLOR;
+    }
+
+    public ArrayList<Square> getListSquare() {
+      return listSquare;
+    }
+
+
 :}
 /*************************************TERMINALES******************************************************/
 terminal NAME,ROWS,COLS;//for map
@@ -48,12 +153,14 @@ non terminal seleccion_poss,pos,pos_agrupar,atributos_poss,tipo_board;
 non terminal typo_poss,solo_poss,varios_bloques;
 non terminal entre_comillas_numero;
 /*************************************PRECEDENCIA******************************************************/
-precedence left SUMAR, RESTAR;
-precedence left MULTIPLICAR, DIVIDIR;
+precedence left SUMAR,RESTAR;
+precedence left MULTIPLICAR,DIVIDIR;
 /*************************************GRAMATICA******************************************************/
 start with inicio;
 /******INICIO DE TODO *****/
-inicio ::= L_APERTURA accion L_CIERRE;
+inicio ::= L_APERTURA accion L_CIERRE {:
+//prinFinal();
+:};
 
 accion ::=
     WORLDS DOBLE_PUNTO ALL
@@ -67,65 +174,86 @@ crear_mundo ::=
     ;
 
 atributos ::=
-    NAME DOBLE_PUNTO CARACTER
-    |ROWS DOBLE_PUNTO entre_comillas_numero
-    |COLS DOBLE_PUNTO entre_comillas_numero
+    NAME DOBLE_PUNTO CARACTER:a {:if (name == null) {
+      name = a;
+    }else{
+      System.out.println("ya tiene un nombre");
+    }:}
+    |ROWS DOBLE_PUNTO entre_comillas_numero {:		
+    if (rows==-1) {
+      if (contador>0) {
+        rows = (int) contador;
+      } else {
+        System.out.println("no puede ser menor a 0");
+      }
+    }else{
+      System.out.println("rows no se puede usar dos veces");
+    }:}
+    |COLS DOBLE_PUNTO entre_comillas_numero {:		
+    if (cols==-1) {
+      if (contador>0) {
+        cols = (int) contador;
+      } else {
+        System.out.println("no puede ser menor a 0");
+      }
+    }else{
+      System.out.println("cols no se puede usar dos veces");
+    }:}
     |COFIG DOBLE_PUNTO  L_APERTURA bucle_color L_CIERRE
-    |BOARD DOBLE_PUNTO C_APERTURA seleccion_poss  C_CIERRE
-    |TARGETS DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE
-    |PLAYER DOBLE_PUNTO L_APERTURA solo_poss L_CIERRE
-    |BOXES DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE
+    |BOARD DOBLE_PUNTO C_APERTURA seleccion_poss  C_CIERRE 
+    |{:typeSquare = ListSquare.TARGET;:} TARGETS DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
+    |{:typeSquare = ListSquare.PLAY;:} PLAYER DOBLE_PUNTO L_APERTURA solo_poss L_CIERRE {:addSquare();:}
+    |{:typeSquare = ListSquare.BOX;:} BOXES  DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
     ;
 /*****************posicion*************************/
 seleccion_poss ::= 
-    seleccion_poss COMA pos_agrupar
-    | pos_agrupar
+    seleccion_poss COMA  pos_agrupar  
+    | pos_agrupar 
     ;
-pos_agrupar ::= L_APERTURA atributos_poss L_CIERRE ;
+pos_agrupar ::= L_APERTURA atributos_poss L_CIERRE {:addSquare();:};
 
 atributos_poss ::=
-    atributos_poss COMA typo_poss
-    |typo_poss
+     atributos_poss COMA  typo_poss 
+    | typo_poss 
     ;
 varios_bloques ::= 
-    varios_bloques COMA L_APERTURA solo_poss L_CIERRE
-    | L_APERTURA solo_poss L_CIERRE
+    varios_bloques {:addSquare();:} COMA L_APERTURA solo_poss L_CIERRE {:addSquare();:}
+    | L_APERTURA solo_poss L_CIERRE 
     ;
 solo_poss ::=
     solo_poss COMA pos
     |pos
     ;
 pos ::=
-    POSX DOBLE_PUNTO entre_comillas_numero
-    |POSY DOBLE_PUNTO entre_comillas_numero
+    POSX DOBLE_PUNTO entre_comillas_numero {:possX=(int) contador;:}
+    |POSY DOBLE_PUNTO entre_comillas_numero{:possY=(int) contador;:}
     ;
 typo_poss ::= 
     pos
     |TYPE DOBLE_PUNTO  tipo_board
     ;
 tipo_board ::=
-    HALL
-    |BRICK
+    {:typeSquare = ListSquare.HALL;:} HALL 
+    |{:typeSquare = ListSquare.BRICK;:} BRICK  
     ;
 entre_comillas_numero ::=
-    COMILLAS j COMILLAS
+    COMILLAS j COMILLAS 
     | j
     ;
 /*****************color*************************/
 bucle_color ::=
-    bucle_color COMA seleccionar_color
-    |seleccionar_color
+    bucle_color COMA color
+    |color
     ;
-seleccionar_color ::= color DOBLE_PUNTO  COLOR 
-    ;
+seleccionar_color ::= color:a ;
 color ::=
-    BOX_COLOR 
-    |BOX_ON_COLOR 
-    |TAGET_COLOR 
-    |BRICK_COLOR 
-    |HALL_COLOR 
-    |UNDEFINED_COLOR 
-    |PLAYER_COLOR 
+    BOX_COLOR DOBLE_PUNTO  COLOR:a        {:if(BOX_COLOR==null){BOX_COLOR = a;}else{System.out.println("Ya esta seleccionado BOX_COLOR");}:}
+    |BOX_ON_COLOR DOBLE_PUNTO  COLOR:a    {:if(BOX_ON_COLOR==null){BOX_ON_COLOR = a;}else{System.out.println("Ya esta seleccionado BOX_ON_COLOR");}:}
+    |TAGET_COLOR DOBLE_PUNTO  COLOR:a     {:if(TARGET_COLOR==null){TARGET_COLOR = a;}else{System.out.println("Ya esta seleccionado TARGET_COLOR");}:}
+    |BRICK_COLOR DOBLE_PUNTO  COLOR:a     {:if(BRICK_COLOR==null){BRICK_COLOR = a;}else{System.out.println("Ya esta seleccionado BRICK_COLOR");}:}
+    |HALL_COLOR DOBLE_PUNTO  COLOR:a      {:if(HALL_COLOR==null){HALL_COLOR = a;}else{System.out.println("Ya esta seleccionado HALL_COLOR");}:}
+    |UNDEFINED_COLOR DOBLE_PUNTO  COLOR:a {:if(UNDEFINED_COLOR==null){UNDEFINED_COLOR = a;}else{System.out.println("Ya esta seleccionado UNDEFINED_COLOR");}:}
+    |PLAYER_COLOR DOBLE_PUNTO  COLOR:a    {:if(PLAY_COLOR==null){PLAY_COLOR = a;}else{System.out.println("Ya esta seleccionado PLAY_COLOR");}:}
     ;
 /******operaciones matematicas*****/
 j ::= o:a {:
@@ -140,7 +268,7 @@ j ::= o:a {:
 o ::= o:a SUMAR o:b {:
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
-                    double resultado = numeroUno-numeroDos;
+                    double resultado = numeroUno+numeroDos;
                     RESULT = String.valueOf(resultado);
                     :}
 

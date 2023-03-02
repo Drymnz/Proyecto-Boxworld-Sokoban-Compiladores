@@ -453,13 +453,9 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-    private  List<Token> listComments =  new ArrayList<>();
     private String report = "";
-    private void addComments(){
-        listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
-    }
+
     private void print(String token){
-        //Console.ConsoleText.append("\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">");
         report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
@@ -468,10 +464,6 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
     public void setReport(String repor){
         this.report = repor;
     }
-    
-    public List<Token>  getlistComments(){
-        return this.listComments;
-    };
 
 
   /**
@@ -905,7 +897,7 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
             // fall through
           case 53: break;
           case 6:
-            { addComments();/*COMENTARIO*/
+            { /*COMENTARIO*/
             }
             // fall through
           case 54: break;
