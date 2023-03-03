@@ -8,12 +8,18 @@ import com.cunoc.Map.Square;
 public class SicJSonToMap {
 
     private final SicJSon converter;
+    private Map returnFinal;
 
     public SicJSonToMap(SicJSon converter) {
         this.converter = converter;
+        this.returnFinal = this.returnMap();
     }
 
-    public Map returnMap() {
+    public Map getMap(){
+        return this.returnFinal;
+    }
+
+    private Map returnMap() {
         Map returnMap = new Map(this.converter.getName(), this.converter.getRows(), this.converter.getCols());
         // canbiar color si son diferentes
         returnMap.setBOX_COLOR((returnMap.getBOX_COLOR().equals(this.converter.getBOX_COLOR())

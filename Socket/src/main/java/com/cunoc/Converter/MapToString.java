@@ -9,7 +9,7 @@ import com.cunoc.Map.Square;
 public class MapToString {
 
     private final Map converter;
-    private String resultFianal = null;
+    private String resultFianal;
 
     public MapToString(Map converter) {
         this.converter = converter;
@@ -78,6 +78,14 @@ public class MapToString {
                 return "\t\t</player>\n";
             default:
                 return "";
+        }
+    }
+
+    public String formatXML(){
+        if (resultFianal == null) {
+            return "null";
+        } else {
+            return this.resultFianal;
         }
     }
     @Override

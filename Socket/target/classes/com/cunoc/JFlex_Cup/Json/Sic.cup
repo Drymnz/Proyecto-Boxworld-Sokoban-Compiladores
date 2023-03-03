@@ -15,6 +15,7 @@ import com.cunoc.Server.Console;
         private double contador= 0;
         private Symbol s;
         private int errorCounter= 0;
+        //attributes for map
         private ListSquare typeSquare = ListSquare.UNDEFINED;
         private String name = null;
         private int rows = -1;
@@ -174,7 +175,8 @@ crear_mundo ::=
     ;
 
 atributos ::=
-    NAME DOBLE_PUNTO CARACTER:a {:if (name == null) {
+    NAME DOBLE_PUNTO CARACTER:a {:
+    if (name == null) {
       name = a;
     }else{
       System.out.println("ya tiene un nombre");

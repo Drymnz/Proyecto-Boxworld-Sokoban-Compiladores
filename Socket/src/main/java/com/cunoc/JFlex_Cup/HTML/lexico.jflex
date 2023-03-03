@@ -17,7 +17,7 @@ import com.cunoc.Server.Console;
     private String report = "";
 
     private void print(String token){
-        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
         return this.report;
@@ -27,7 +27,7 @@ import com.cunoc.Server.Console;
     }
 %}
 CARACTER = ([a-z]|"_")[a-zA-Z][a-zA-Z0-9]+
-ENTERO = [0-9]*
+ENTERO = [0-9]+
 COLOR = ("#")[a-zA-Z0-9][a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?
 espacio =[\n | \r | \t | \f | \b]+
 %%

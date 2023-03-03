@@ -101,7 +101,7 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\1\1\2\1\3\1\2\1\1\4\2\1\4\16\0"+
+    "\1\0\1\1\1\2\1\1\1\3\4\1\1\4\16\0"+
     "\1\4\32\0\1\5\1\4\1\6\33\0\1\7\1\4"+
     "\36\0\1\10\1\4\25\0\1\11\2\0\1\12\1\0"+
     "\1\13\1\14\1\15\1\0\1\16\2\0\1\4\5\0"+
@@ -363,7 +363,7 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\1\1\11\10\1\16\0\1\1\32\0\2\1\1\11"+
+    "\1\0\1\11\10\1\16\0\1\1\32\0\2\1\1\11"+
     "\33\0\1\11\1\1\36\0\1\11\1\1\25\0\1\11"+
     "\2\0\1\11\1\0\3\11\1\0\1\11\2\0\1\11"+
     "\5\0\1\1\2\0\1\1\1\0\3\1\1\0\1\1"+
@@ -456,7 +456,7 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
     private String report = "";
 
     private void print(String token){
-        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
         return this.report;
@@ -872,17 +872,17 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext()));
+            { print("ERROR");
             }
             // fall through
           case 49: break;
           case 2:
-            { print("ERROR");
+            { /*ESPACIOS*/
             }
             // fall through
           case 50: break;
           case 3:
-            { /*ESPACIOS*/
+            { print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 51: break;
