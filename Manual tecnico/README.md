@@ -1,5 +1,5 @@
 # Proyecto-Boxworld-Sokoban-Compiladores
-    El sistema está desarrollado bajo kotlin en para parte de android y en el socket está por java. La aplicación móvil se conecta con el socket mediante un puerto indicado previamente a la compilación del jar también antes de la instalación de la aplicación kotlin.
+El sistema está desarrollado bajo kotlin en para parte de android y en el socket está por java. La aplicación móvil se conecta con el socket mediante un puerto indicado previamente a la compilación del jar también antes de la instalación de la aplicación kotlin.
 
 <img src='/recursos-git/01_1366x768_scrot.png'>
 
