@@ -34,7 +34,7 @@ espacio =[\n | \r | \t | \f | \b]+
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
 "</" ~"/>"          {/*COMENTARIO*/}
-"<?" ~"?>"          {/*COMENTARIO*/}
+"<?" ~"?>"          {/*INDICACIONES TECNICAS*/}
 {espacio}           {/*ESPACIOS*/}
 /*FINAL INGNORAR*/
 "<worlds>"			{print("worlds"    );return new Symbol(sym.INICIO_WORLDS ,yyline,yycolumn, (yytext())); }
