@@ -179,6 +179,6 @@ El servidor al arrancar siempre estará en espera de las llamadas, y recibirá u
 
 ## Aplicacion mobil Android (kotlin)
 
-	La parte de android esta se compila para el uso de un app y se instala de forma de aplicación de terceros.
+La parte de android esta se compila para el uso de un app y se instala de forma de aplicación de terceros.
 
 ### Ejecucion del socket

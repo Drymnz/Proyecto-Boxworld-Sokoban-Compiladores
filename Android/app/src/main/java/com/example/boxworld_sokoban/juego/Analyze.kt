@@ -2,10 +2,9 @@ package com.example.boxworld_sokoban.juego
 
 import android.util.Log
 import android.widget.Button
-import com.example.boxworld_sokoban.JflexYCup.Lexema
-import com.example.boxworld_sokoban.JflexYCup.parser
+import com.example.boxworld_sokoban.juego.JflexYCup.MovePlay.Lexema
+import com.example.boxworld_sokoban.juego.JflexYCup.MovePlay.parser
 import com.example.boxworld_sokoban.R
-import java.io.Reader
 import java.io.StringReader
 
 class Analyze {
@@ -21,8 +20,12 @@ class Analyze {
     public fun runAnaly(){
         if (!this.runAnaly){
             Log.d("analyze","iniciando el analise")
-            val lexema:Lexema = Lexema(StringReader(this.text))
-            val sintac: parser = parser(lexema)
+            val lexema: Lexema =
+                Lexema(
+                    StringReader(this.text)
+                )
+            val sintac: parser =
+                parser(lexema)
             sintac.parse()
             game.findViewById<Button>(R.id.BotonCompiladorGame).setEnabled(false)
             //start move

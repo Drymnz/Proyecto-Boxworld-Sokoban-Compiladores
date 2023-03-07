@@ -1,6 +1,6 @@
 /*primer seccion: codigo de usuario*/
 
-package com.example.boxworld_sokoban.JflexYCup;
+package com.example.boxworld_sokoban.juego.JflexYCup.MovePlay;
 import java_cup.runtime.*;
 
 %%

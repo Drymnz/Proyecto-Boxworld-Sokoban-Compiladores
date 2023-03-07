@@ -1,0 +1,242 @@
+/*************************************CODE******************************************************/
+package com.example.boxworld_sokoban.juego.JflexYCup.xml;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.ListSquare;
+import com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.Square;
+
+    parser code {:
+        private double contador= 0;
+        private Symbol s;
+        private int errorCounter= 0;
+        //attributes for map
+        private ListSquare typeSquare = ListSquare.UNDEFINED;
+        private String name = null;
+        private int rows = -1;
+        private int cols = -1;
+        private int possY = -1;
+        private int possX = -1;
+        //color
+        private String BOX_COLOR = null;
+        private String BOX_ON_COLOR = null;
+        private String TARGET_COLOR = null;
+        private String BRICK_COLOR = null;
+        private String HALL_COLOR = null;
+        private String UNDEFINED_COLOR = null;
+        private String PLAY_COLOR = null;
+        private ArrayList<Square> listSquare = new ArrayList();
+
+    SicXML(LexicoXML lexico){
+        super(lexico);
+    }
+    public void syntax_error(Symbol cur_token) {
+        errorCounter++;
+        System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
+    }
+     private void addSquare(){
+        listSquare.add(new Square(typeSquare,possX,possY));
+        //System.out.println(typeSquare.toString()+"possx"+possX+"possY"+possY);
+    }
+    private void prinFinal(){
+        //System.out.println(typeSquare.toString()+"possx"+possX+"possY"+possY);
+        System.out.println("contador : "+contador);
+        System.out.println("errorCounter : "+errorCounter);
+        System.out.println("typeSquare : "+typeSquare);
+        System.out.println("name : "+name);
+        System.out.println("rows : "+rows);
+        System.out.println("cols : "+cols);
+        System.out.println("possY : "+possY);
+        System.out.println("possX : "+possX);
+        System.out.println("BOX_COLOR : "+BOX_COLOR);
+        System.out.println("BOX_ON_COLOR : "+BOX_ON_COLOR);
+        System.out.println("TARGET_COLOR : "+TARGET_COLOR);
+        System.out.println("BRICK_COLOR : "+BRICK_COLOR);
+        System.out.println("HALL_COLOR : "+HALL_COLOR);
+        System.out.println("UNDEFINED_COLOR : "+UNDEFINED_COLOR);
+        System.out.println("PLAY_COLOR : "+PLAY_COLOR);
+        System.out.println("listSquare : "+listSquare.size());
+        for (int index = 0; index < listSquare.size(); index++) {
+          System.out.println("Square #"+index+":"+listSquare.get(index).toString());
+        }
+    }
+
+    public Symbol getSymbol(){
+        return this.s;
+    }
+    public int getErrorCounter(){
+        return this.errorCounter;
+    }
+     /*GET*/
+    
+public ListSquare getTypeSquare() {
+      return typeSquare;
+    }
+
+    public String getName() {
+      return name;
+    }
+
+    public int getRows() {
+      return rows;
+    }
+
+    public int getCols() {
+      return cols;
+    }
+
+    public int getPossY() {
+      return possY;
+    }
+
+    public int getPossX() {
+      return possX;
+    }
+
+    public String getBOX_COLOR() {
+      return BOX_COLOR;
+    }
+
+    public String getBOX_ON_COLOR() {
+      return BOX_ON_COLOR;
+    }
+
+    public String getTARGET_COLOR() {
+      return TARGET_COLOR;
+    }
+
+    public String getBRICK_COLOR() {
+      return BRICK_COLOR;
+    }
+
+    public String getHALL_COLOR() {
+      return HALL_COLOR;
+    }
+
+    public String getUNDEFINED_COLOR() {
+      return UNDEFINED_COLOR;
+    }
+
+    public String getPLAY_COLOR() {
+      return PLAY_COLOR;
+    }
+
+    public ArrayList<Square> getListSquare() {
+      return listSquare;
+    }
+
+:}
+/*************************************TERMINALES******************************************************/
+terminal INICIO_WORLDS,FINAL_WORLDS;
+terminal INICIO_WORLD,FINAL_WORLD;
+terminal INICIO_NAME,FINAL_NAME,INICIO_ROWS,FINAL_ROWS,INICIO_COLS,FINAL_COLS;
+terminal INICIO_CONFIG,FINAL_CONFIG,INICIO_BOARD,FINAL_BOARD;
+terminal INICIO_BOXES,FINAL_BOXES,INICIO_TARGETS,FINAL_TARGETS,INICIO_PLAYER,FINAL_PLAYER;
+terminal INICIO_POSX,FINAL_POSX,INICIO_POSY,FINAL_POSY;
+terminal INICIO_BOX_COLOR,FINAL_BOX_COLOR,INICIO_BOX_COLOR_ON,FINAL_BOX_COLOR_ON,INICIO_TARGET_COLOR,FINAL_TARGET_COLOR;//color
+terminal INICIO_BRICK_COLOR,FINAL_BRICK_COLOR,INICIO_HALL_COLOR,FINAL_HALL_COLOR,INICIO_UNDEFINED_COLOR,FINAL_UNDEFINED_COLOR;
+terminal INICIO_PLAYER_COLOR, FINAL_PLAYER_COLOR,INICIO_TYPE,FINAL_TYPE;
+terminal INICIO_ERRORS,FINAL_ERRORS,INICIO_ERROR,FINAL_ERROR;
+/****************NUMERICOS***********************/
+terminal BRICK,HALL;//pasio o ladrillo
+terminal String ENTERO,CARACTER,COLOR; /*DATOS*/
+/*************************************NO TERMINALES******************************************************/
+non terminal inicio,accion;
+non terminal datos_mapa,atributos;
+non terminal color,bucle_color;
+non terminal pos,tipo_board,tipo_poss_dar;
+non terminal typo_poss,solo_poss;
+non terminal mundo_erro,errores_posibles,inidicacion_error;
+/*************************************GRAMATICA******************************************************/
+start with inicio;
+/******INICIO DE TODO *****/
+inicio ::= mundo_erro;
+
+mundo_erro ::=
+    INICIO_WORLDS accion FINAL_WORLDS
+    |INICIO_ERRORS errores_posibles FINAL_ERRORS
+    ;
+errores_posibles ::=
+    INICIO_ERROR inidicacion_error FINAL_ERROR
+    ;
+inidicacion_error ::=
+    ;
+accion ::=
+    INICIO_WORLD datos_mapa FINAL_WORLD {:
+    //prinFinal();
+    :} accion
+    |
+    ;   
+/*****************CREAR MUNDO*************************/
+datos_mapa ::=
+    datos_mapa atributos
+    |atributos
+    ;
+atributos ::=
+    INICIO_NAME CARACTER:a FINAL_NAME {:
+    if (name == null) {
+      name = a;
+    }else{
+      System.out.println("ya tiene un nombre");
+    }:}
+    |INICIO_ROWS ENTERO:a FINAL_ROWS{:		
+    if (rows==-1) {
+      if (Integer.parseInt(a)>0) {
+        rows = Integer.parseInt(a);
+      } else {
+        System.out.println("no puede ser menor a 0");
+      }
+    }else{
+      System.out.println("rows no se puede usar dos veces");
+    }:}
+    |INICIO_COLS ENTERO:a FINAL_COLS{:		
+    if (cols==-1) {
+      if (Integer.parseInt(a)>0) {
+        cols = Integer.parseInt(a);
+      } else {
+        System.out.println("no puede ser menor a 0");
+      }
+    }else{
+      System.out.println("cols no se puede usar dos veces");
+    }:}
+    |INICIO_CONFIG  bucle_color FINAL_CONFIG
+    |INICIO_BOARD tipo_poss_dar  FINAL_BOARD{:addSquare();:}
+    |{:typeSquare = ListSquare.TARGET;:}INICIO_TARGETS solo_poss FINAL_TARGETS {:addSquare();:}
+    |{:typeSquare = ListSquare.PLAY;:}INICIO_PLAYER solo_poss FINAL_PLAYER {:addSquare();:}
+    |{:typeSquare = ListSquare.BOX;:}INICIO_BOXES solo_poss FINAL_BOXES {:addSquare();:}
+    ;
+/*****************posicion*************************/
+solo_poss ::=
+    solo_poss  pos
+    |pos
+    ;
+pos ::=
+    INICIO_POSX ENTERO:a FINAL_POSX {:possX= Integer.parseInt(a);:}
+    |INICIO_POSY ENTERO:a FINAL_POSY{:possY= Integer.parseInt(a);:}
+    ;
+tipo_poss_dar ::=
+    tipo_poss_dar typo_poss
+    |typo_poss
+    ;
+typo_poss ::= 
+    pos
+    |INICIO_TYPE  tipo_board FINAL_TYPE
+    ;
+tipo_board ::=
+    {:typeSquare = ListSquare.HALL;:} HALL 
+    |{:typeSquare = ListSquare.BRICK;:} BRICK  
+    ;
+/*****************color*************************/
+bucle_color ::=
+    bucle_color color
+    |color
+    ;
+color ::=
+    INICIO_BOX_COLOR COLOR:a FINAL_BOX_COLOR                  {:if(BOX_COLOR==null){BOX_COLOR = a;}else{System.out.println("Ya esta seleccionado BOX_COLOR");}:}
+    |INICIO_BOX_COLOR_ON COLOR:a   FINAL_BOX_COLOR_ON         {:if(BOX_ON_COLOR==null){BOX_ON_COLOR = a;}else{System.out.println("Ya esta seleccionado BOX_ON_COLOR");}:}
+    |INICIO_TARGET_COLOR  COLOR:a FINAL_TARGET_COLOR          {:if(TARGET_COLOR==null){TARGET_COLOR = a;}else{System.out.println("Ya esta seleccionado TARGET_COLOR");}:}
+    |INICIO_BRICK_COLOR  COLOR:a  FINAL_BRICK_COLOR           {:if(BRICK_COLOR==null){BRICK_COLOR = a;}else{System.out.println("Ya esta seleccionado BRICK_COLOR");}:}
+    |INICIO_HALL_COLOR  COLOR:a FINAL_HALL_COLOR              {:if(HALL_COLOR==null){HALL_COLOR = a;}else{System.out.println("Ya esta seleccionado HALL_COLOR");}:}
+    |INICIO_UNDEFINED_COLOR COLOR:a  FINAL_UNDEFINED_COLOR    {:if(UNDEFINED_COLOR==null){UNDEFINED_COLOR = a;}else{System.out.println("Ya esta seleccionado UNDEFINED_COLOR");}:}
+    |INICIO_PLAYER_COLOR COLOR:a FINAL_PLAYER_COLOR           {:if(PLAY_COLOR==null){PLAY_COLOR = a;}else{System.out.println("Ya esta seleccionado PLAY_COLOR");}:}
+    ;

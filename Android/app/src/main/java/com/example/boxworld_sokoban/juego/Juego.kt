@@ -2,17 +2,17 @@ package com.example.boxworld_sokoban.juego
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.example.boxworld_sokoban.R
-
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.BitmapDrawable
-import android.text.TextWatcher
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.example.boxworld_sokoban.R
+import com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.ListSquare
+import com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.Map
 
 class Juego : AppCompatActivity() {
 
@@ -31,11 +31,17 @@ class Juego : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juego)
-
         //variable assignment
         this.table_game = findViewById<TableLayout>(R.id.table_game)
-        testFillInBox()//test
-        loadMap()//load map
+        //
+        val bundle = getIntent().getSerializableExtra("listado_reportes_mate")
+
+        if (bundle!=null){
+            converterMapToList(bundle as Map)
+        }else{
+            testFillInBox()//test
+        }
+        loadMap()//load mapW
         val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
         var buttonA:Button = findViewById(R.id.BotonCompiladorGame)
         //solucion
@@ -50,6 +56,36 @@ class Juego : AppCompatActivity() {
                 row_one_pruea.addView(item_intern.getBox())
             }
             table_game.addView(row_one_pruea)
+        }
+    }
+    
+    private fun converterMapToList(map: Map){
+        for(possY in 0..(map.getRows() - 1)) {
+            val row = ArrayList<BoxGame>()
+            for(possX in 0..(map.getCols() - 1)) {
+                val selec: ListSquare = map.getMatrix().get(possY).get(possX).getType()
+                when (selec) {
+                    ListSquare.BOX -> {
+                        row.add(createBox(ListBox.BOX))
+                    }
+                    ListSquare.HALL -> {
+                        row.add(createBox(ListBox.HALL))
+                    }
+                    ListSquare.BRICK -> {
+                        row.add(createBox(ListBox.BRICK))
+                    }
+                    ListSquare.TARGET -> {
+                        row.add(createBox(ListBox.TARGET))
+                    }
+                    ListSquare.PLAY -> {
+                        row.add(createBox(ListBox.PLAY))
+                    }
+                    else -> {
+
+                    }
+                }
+            }
+            this.listBoxGameMap.add(row)
         }
     }
 
@@ -323,7 +359,7 @@ class Juego : AppCompatActivity() {
     * */
     private fun switchBoxGame(beforePosY:Int,beforePosX:Int,nextPosY:Int,nextPosX:Int){
         var before:ListBox = this.listBoxGameMap.get(beforePosY).get(beforePosX).getType()
-            when (this.listBoxGameMap.get(nextPosY).get(nextPosX).getType())
+                    when (this.listBoxGameMap.get(nextPosY).get(nextPosX).getType())
             {
                 ListBox.HALL->
                 {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.cunoc.Map.ListSquare;
 import com.cunoc.Map.Square;
 import com.cunoc.Server.Console;
-
+import com.cunoc.Server.ListReactionServer;
 
 import com.cunoc.Server.Console;
     parser code {:
@@ -31,6 +31,8 @@ import com.cunoc.Server.Console;
         private String UNDEFINED_COLOR = null;
         private String PLAY_COLOR = null;
         private ArrayList<Square> listSquare = new ArrayList();
+        //ReactionServer
+        private ListReactionServer reaction = ListReactionServer.ERROR;
 
     SicJSon(LexicoJson lexico){
         super(lexico);
@@ -42,6 +44,9 @@ import com.cunoc.Server.Console;
     }
     public Symbol getSymbol(){
         return this.s;
+    }
+    public ListReactionServer getReaction(){
+      return this.reaction;
     }
     public int getErrorCounter(){
         return this.errorCounter;
@@ -164,9 +169,14 @@ inicio ::= L_APERTURA accion L_CIERRE {:
 :};
 
 accion ::=
-    WORLDS DOBLE_PUNTO ALL
-    |WORLD DOBLE_PUNTO CARACTER
-    |crear_mundo
+    {:reaction = ListReactionServer.ALL_WORDS;:}WORLDS DOBLE_PUNTO ALL 
+    |{:reaction = ListReactionServer.WORD;:}WORLD DOBLE_PUNTO CARACTER:a {:
+    if (name == null) {
+      name = a;
+    }else{
+      System.out.println("ya tiene un nombre");
+    }:}
+    |{:reaction = ListReactionServer.ADD_WORD;:}crear_mundo
     ;   
 /*****************CREAR MUNDO*************************/
 crear_mundo ::=

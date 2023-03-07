@@ -8,15 +8,7 @@ import java.util.ArrayList;
 
 public class Sever extends Thread {
     private final int port;
-    private final String NADA = "NADA";
-
-    public Sever(int port) {
-        this.port = port;
-    }
-
-    public int getPort() {
-        return port;
-    }
+    private final String NADA = "error";
 
     @Override
     public void run() {
@@ -31,7 +23,8 @@ public class Sever extends Thread {
                 ObjectInputStream in = new ObjectInputStream(socketClient.getInputStream());
                 ObjectOutputStream out = new ObjectOutputStream(socketClient.getOutputStream());
                 Object getCliente = in.readObject();
-                String json = res(getCliente);
+                String json = interprets(getCliente);
+                 /*analysis process */
                 out.writeObject(json);
                 Console.ConsoleText.append("\nle envie esto:\n" + json);
                 socketClient.close();
@@ -44,14 +37,24 @@ public class Sever extends Thread {
         // System.exit(0);
     }
 
-    private String res(Object get) {
-        if (get instanceof ArrayList) {
-                return "";
-        }
+    private String interprets(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            return "";
+            return text;
         }
         return NADA;
+    }
+
+    private Object reaction(String analyze){
+
+        return null;
+    }
+
+    public Sever(int port) {
+        this.port = port;
+    }
+
+    public int getPort() {
+        return port;
     }
 }
