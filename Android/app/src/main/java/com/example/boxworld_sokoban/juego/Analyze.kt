@@ -27,7 +27,7 @@ class Analyze {
             val sintac: parser =
                 parser(lexema)
             sintac.parse()
-            game.findViewById<Button>(R.id.BotonCompiladorGame).setEnabled(false)
+            this.game.findViewById<Button>(R.id.BotonCompiladorGame).setEnabled(false)
             //start move
             val thread = Thread(Runnable {
                 //fin move
@@ -43,7 +43,6 @@ class Analyze {
             Thread.sleep(500)
         }
         this.runAnaly = false
-        this.game.findViewById<Button>(R.id.BotonCompiladorGame).setEnabled(true)
     }
     public  fun  isRunAnaly():Boolean{return  this.runAnaly}
 }

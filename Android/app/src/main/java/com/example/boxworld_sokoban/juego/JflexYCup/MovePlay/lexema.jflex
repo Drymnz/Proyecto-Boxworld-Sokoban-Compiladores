@@ -15,7 +15,7 @@ import java_cup.runtime.*;
 %{
     /*CODE*/
         public void print() {
-            System.out.println("\n<" + yytext() + "><Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + yycolumn + "\">");
+            //System.out.println("\n<" + yytext() + "><Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + yycolumn + "\">");
         }
     /*CODE*/
 %}
@@ -27,7 +27,7 @@ espacio =[\r|\t|\f|\n|\s| ]+
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
 #.*[\n]?            {
-                        System.out.println("comentario"+this.yytext());
+                        //System.out.println("comentario"+this.yytext());
                     }
 {espacio}           {/*nada*/}
 /*SIMBOLOS DE PUNTUACION*/

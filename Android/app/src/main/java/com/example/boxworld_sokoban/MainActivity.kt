@@ -20,13 +20,13 @@ import java.io.StringReader
 class MainActivity : AppCompatActivity() {
 
     val PORT = 8086//socket connection port
-    val prueva:String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    val prueva_two:String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<worlds>\n" +
             "\t<world>\n" +
             "\t\t<name>tatoine</name>\n" +
             "\t\t<name>tatoine</name><name>tatoine</name><name>tatoine</name>\n" +
-            "\t\t<rows>5</rows>\n" +
-            "\t\t<cols>4</cols>\n" +
+            "\t\t<rows>10</rows>\n" +
+            "\t\t<cols>10</cols>\n" +
             "\t\t<config>\n" +
             "\t\t\t<box_color>#ffff00</box_color>\n" +
             "\t\t\t<box_on_target_color>#fe0002</box_on_target_color>\n" +
@@ -37,124 +37,255 @@ class MainActivity : AppCompatActivity() {
             "\t\t\t<player_color>#ff00f7</player_color>\n" +
             "\t\t</config>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>0</posX>\n" +
-            "\t\t\t<posY>0</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>0</posX>\n" +
             "\t\t\t<posY>1</posY>\n" +
+            "\t\t\t<posX>3</posX>\n" +
             "\t\t\t<type>BRICK</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>0</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
+            "\t\t\t<posY>1</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
             "\t\t\t<type>BRICK</type>\n" +
-            "            </board>\n" +
+            "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>0</posX>\n" +
+            "\t\t\t<posY>1</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>2</posY>\n" +
+            "\t\t\t<posX>3</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>2</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>2</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
             "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>3</posX>\n" +
             "\t\t\t<type>BRICK</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>0</posX>\n" +
-            "\t\t\t<posY>4</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>1</posX>\n" +
-            "\t\t\t<posY>0</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>1</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
-            "\t\t\t<type>HALL</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>1</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
-            "\t\t\t<type>HALL</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>1</posX>\n" +
             "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
             "\t\t\t<type>HALL</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>1</posX>\n" +
-            "\t\t\t<posY>4</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>2</posX>\n" +
-            "\t\t\t<posY>0</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>2</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
-            "\t\t\t<type>HALL</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>2</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
-            "\t\t\t<type>HALL</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>2</posX>\n" +
             "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>7</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>3</posY>\n" +
+            "\t\t\t<posX>8</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>1</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>2</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>3</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
             "\t\t\t<type>HALL</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>2</posX>\n" +
             "\t\t\t<posY>4</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "\t\t\t<posX>3</posX>\n" +
-            "\t\t\t<posY>0</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>3</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>3</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
-            "\t\t</board>\n" +
-            "\t\t<board>\n" +
-            "\t\t\t<posX>3</posX>\n" +
             "\t\t\t<posY>4</posY>\n" +
-            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
             "\t\t</board>\n" +
             "\t\t<board>\n" +
-            "            <posX>3</posX>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>7</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>8</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
             "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>1</posX>\n" +
             "\t\t\t<type>BRICK</type>\n" +
             "\t\t</board>\n" +
-            "\t\t<boxes>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
             "\t\t\t<posX>2</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
-            "\t\t</boxes>\n" +
-            "\t\t<boxes>\n" +
-            "\t\t\t<posX>2</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
-            "\t\t</boxes>\n" +
-            "\t\t<targets>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
             "\t\t\t<posX>3</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
-            "\t\t</targets>\n" +
-            "\t\t<targets>\n" +
-            "\t\t\t<posX>3</posX>\n" +
-            "\t\t\t<posY>2</posY>\n" +
-            "\t\t</targets>\n" +
-            "\t\t<player>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>7</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>8</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
             "\t\t\t<posX>1</posX>\n" +
-            "\t\t\t<posY>1</posY>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>2</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>3</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>7</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>7</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>HALL</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>7</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>8</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>8</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\t\t<board>\n" +
+            "\t\t\t<posY>8</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t\t<type>BRICK</type>\n" +
+            "\t\t</board>\n" +
+            "\n" +
+            "\n" +
+            "\t\t<boxes>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t</boxes>\n" +
+            "\t\t<boxes>\n" +
+            "\t\t\t<posY>6</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t</boxes>\n" +
+            "\t\t<boxes>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t</boxes>\n" +
+            "\t\t<boxes>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>6</posX>\n" +
+            "\t\t</boxes>\n" +
+            "\n" +
+            "\n" +
+            "\t\t<targets>\n" +
+            "\t\t\t<posY>2</posY>\n" +
+            "\t\t\t<posX>4</posX>\n" +
+            "\t\t</targets>\n" +
+            "\t\t<targets>\n" +
+            "\t\t\t<posY>4</posY>\n" +
+            "\t\t\t<posX>7</posX>\n" +
+            "\t\t</targets>\n" +
+            "\t\t<targets>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>2</posX>\n" +
+            "\t\t</targets>\n" +
+            "\t\t<targets>\n" +
+            "\t\t\t<posY>7</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
+            "\t\t</targets>\n" +
+            "\n" +
+            "\n" +
+            "\t\t<player>\n" +
+            "\t\t\t<posY>5</posY>\n" +
+            "\t\t\t<posX>5</posX>\n" +
             "\t\t</player>\n" +
             "\t</world>\n" +
             "</worlds>\n"
@@ -175,16 +306,16 @@ class MainActivity : AppCompatActivity() {
         Log.d("enviado","enviado")
         server.sendJSon()
         //
-        val sic: SicXML? = analyze(prueva)
+        val sic: SicXML? = analyze(prueva_two)
         //decision, *************** put a switch ***************
         // go game
-        if (sic != null) {
-            irJuego(sic)
+        if (sic != null && sic.isMap) {
+                irJuego(sic)
         }
-        // go error
-        goError()
-        // show list
-        showListWord()
+        else{
+            // go error
+            // show list
+        }
     }
     fun analyze(text:String):SicXML?{
         val reader: Reader = StringReader(text)
@@ -205,20 +336,9 @@ class MainActivity : AppCompatActivity() {
         val map : Map = SicXMLToMap(sic).getReturnFinal()
         val list:ArrayList<com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.Map> = ArrayList()
         list.add(map)
-
-
         val intent = Intent(this, Juego::class.java)
-
-        intent.putExtra("listado_reportes_mate", map)
+        intent.putExtra("listado_reportes_mate", map)//send map
         startActivity(intent)
-    }
-
-    fun goError(){
-
-    }
-
-    fun showListWord(){
-
     }
 
 }

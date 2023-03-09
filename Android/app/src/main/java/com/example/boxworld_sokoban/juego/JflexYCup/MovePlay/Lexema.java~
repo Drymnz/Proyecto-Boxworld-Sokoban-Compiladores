@@ -717,7 +717,7 @@ public class Lexema implements java_cup.runtime.Scanner {
             // fall through
           case 19: break;
           case 3:
-            { //System.out.println("comentario"+this.yytext());
+            { System.out.println("comentario"+this.yytext());
             }
             // fall through
           case 20: break;

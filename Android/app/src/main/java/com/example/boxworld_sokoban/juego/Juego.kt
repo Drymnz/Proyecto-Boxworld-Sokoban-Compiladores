@@ -35,11 +35,8 @@ class Juego : AppCompatActivity() {
         this.table_game = findViewById<TableLayout>(R.id.table_game)
         //
         val bundle = getIntent().getSerializableExtra("listado_reportes_mate")
-
         if (bundle!=null){
-            converterMapToList(bundle as Map)
-        }else{
-            testFillInBox()//test
+            convertMapToList(bundle as Map)
         }
         loadMap()//load mapW
         val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
@@ -58,8 +55,11 @@ class Juego : AppCompatActivity() {
             table_game.addView(row_one_pruea)
         }
     }
-    
-    private fun converterMapToList(map: Map){
+    /**
+     * @Map to list
+     * convert a map to a table listing
+     * ****/
+    private fun convertMapToList(map: Map){
         for(possY in 0..(map.getRows() - 1)) {
             val row = ArrayList<BoxGame>()
             for(possX in 0..(map.getCols() - 1)) {
@@ -79,6 +79,11 @@ class Juego : AppCompatActivity() {
                     }
                     ListSquare.PLAY -> {
                         row.add(createBox(ListBox.PLAY))
+                        this.posXPlay = possX
+                        this.posYPlay = possY
+                    }
+                    ListSquare.UNDEFINED -> {
+                        row.add(createBox(ListBox.UNDEFINED))
                     }
                     else -> {
 
@@ -429,130 +434,11 @@ class Juego : AppCompatActivity() {
             }
         }
     }
-
-    public fun testFillInBox(){
-        //test in draw
-        this.posXPlay = 5
-        this.posYPlay = 5
-        // first row
-        val row = ArrayList<BoxGame>()
-        for (i in 0..9) {
-            row.add(createBox(ListBox.UNDEFINED))
-        }
-        //second row
-        val row_one =ArrayList<BoxGame>()
-        for (i in 0..2) {
-            row_one.add(createBox(ListBox.UNDEFINED))
-        }
-        for (i in 0..2) {
-            row_one.add(createBox(ListBox.BRICK))
-        }
-        for (i in 0..3) {
-            row_one.add(createBox(ListBox.UNDEFINED))
-        }
-        //third row
-        val row_tres = ArrayList<BoxGame>()
-        for (i in 0..2) {
-            row_tres.add(createBox(ListBox.UNDEFINED))
-        }
-        row_tres.add(createBox(ListBox.BRICK))
-        row_tres.add(createBox(ListBox.TARGET))
-        row_tres.add(createBox(ListBox.BRICK))
-        for (i in 0..3) {
-            row_tres.add(createBox(ListBox.UNDEFINED))
-        }
-        //fourth row
-        val row_fiyrth = ArrayList<BoxGame>()
-        for (i in 0..2) {
-            row_fiyrth.add(createBox(ListBox.UNDEFINED))
-        }
-        row_fiyrth.add(createBox(ListBox.BRICK))
-        row_fiyrth.add(createBox(ListBox.HALL))
-        for (i in 0..3) {
-            row_fiyrth.add(createBox(ListBox.BRICK))
-        }
-        row_fiyrth.add(createBox(ListBox.UNDEFINED))
-        //fifth row
-        val row_fifth = ArrayList<BoxGame>()
-        row_fifth.add(createBox(ListBox.UNDEFINED))
-        for (i in 0..2) {
-            row_fifth.add(createBox(ListBox.BRICK))
-        }
-        row_fifth.add(createBox(ListBox.BOX))
-        row_fifth.add(createBox(ListBox.HALL))
-        row_fifth.add(createBox(ListBox.BOX))
-        row_fifth.add(createBox(ListBox.TARGET))
-        row_fifth.add(createBox(ListBox.BRICK))
-        row_fifth.add(createBox(ListBox.UNDEFINED))
-
-        //sixth row
-        val row_sixth = ArrayList<BoxGame>()
-        row_sixth.add(createBox(ListBox.UNDEFINED))
-        row_sixth.add(createBox(ListBox.BRICK))
-        row_sixth.add(createBox(ListBox.TARGET))
-        row_sixth.add(createBox(ListBox.HALL))
-        row_sixth.add(createBox(ListBox.BOX))
-        row_sixth.add(createBox(ListBox.PLAY))
-        row_sixth.add(createBox(ListBox.BRICK))
-        row_sixth.add(createBox(ListBox.BRICK))
-        row_sixth.add(createBox(ListBox.BRICK))
-        row_sixth.add(createBox(ListBox.UNDEFINED))
-        //siventh row
-        val row_siventh = ArrayList<BoxGame>()
-        row_siventh.add(createBox(ListBox.UNDEFINED))
-        for (i in 0..3) {
-            row_siventh.add(createBox(ListBox.BRICK))
-        }
-        row_siventh.add(createBox(ListBox.BOX))
-        row_siventh.add(createBox(ListBox.BRICK))
-        for (i in 0..2) {
-            row_siventh.add(createBox(ListBox.UNDEFINED))
-        }
-        //eighth row
-        val row_eighth = ArrayList<BoxGame>()
-        for (i in 0..3) {
-            row_eighth.add(createBox(ListBox.UNDEFINED))
-        }
-        row_eighth.add(createBox(ListBox.BRICK))
-        row_eighth.add(createBox(ListBox.TARGET))
-        row_eighth.add(createBox(ListBox.BRICK))
-        for (i in 0..2) {
-            row_eighth.add(createBox(ListBox.UNDEFINED))
-        }
-        //ninth row
-        val row_ninth = ArrayList<BoxGame>()
-        for (i in 0..3) {
-            row_ninth.add(createBox(ListBox.UNDEFINED))
-        }
-        for (i in 0..2) {
-            row_ninth.add(createBox(ListBox.BRICK))
-        }
-        for (i in 0..2) {
-            row_ninth.add(createBox(ListBox.UNDEFINED))
-        }
-        //tenth row
-        val row_tenth = ArrayList<BoxGame>()
-        for (i in 0..9) {
-            row_tenth.add(createBox(ListBox.UNDEFINED))
-        }
-
-        this.listBoxGameMap.add(row)
-        this.listBoxGameMap.add(row_one)
-        this.listBoxGameMap.add(row_tres)
-        this.listBoxGameMap.add(row_fiyrth)
-        this.listBoxGameMap.add(row_fifth)
-        this.listBoxGameMap.add(row_sixth)
-        this.listBoxGameMap.add(row_siventh)
-        this.listBoxGameMap.add(row_eighth)
-        this.listBoxGameMap.add(row_ninth)
-        this.listBoxGameMap.add(row_tenth)
-    }
     /**
      * analyze and move the player
     * */
     fun analisar(view: View){
         val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
-        var buttonA:Button = findViewById(R.id.BotonCompiladorGame)
         var anly:Analyze = Analyze(nameTextField.text.toString(),this)
         anly.runAnaly()
     }

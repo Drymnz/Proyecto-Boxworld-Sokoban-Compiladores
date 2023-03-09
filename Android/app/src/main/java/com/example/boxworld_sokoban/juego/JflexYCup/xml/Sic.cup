@@ -26,10 +26,14 @@ import com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.Square;
         private String UNDEFINED_COLOR = null;
         private String PLAY_COLOR = null;
         private ArrayList<Square> listSquare = new ArrayList();
+        private boolean map = false ;
 
     SicXML(LexicoXML lexico){
         super(lexico);
     }
+     public boolean isMap() {
+            return this.map;
+        }
     public void syntax_error(Symbol cur_token) {
         errorCounter++;
         System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
@@ -153,8 +157,8 @@ start with inicio;
 inicio ::= mundo_erro;
 
 mundo_erro ::=
-    INICIO_WORLDS accion FINAL_WORLDS
-    |INICIO_ERRORS errores_posibles FINAL_ERRORS
+    {:map = true ; :}INICIO_WORLDS accion FINAL_WORLDS
+    |{:map = false ; :}INICIO_ERRORS errores_posibles FINAL_ERRORS
     ;
 errores_posibles ::=
     INICIO_ERROR inidicacion_error FINAL_ERROR
