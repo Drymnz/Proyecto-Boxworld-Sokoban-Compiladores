@@ -36,11 +36,15 @@ public class FileConverter {
         if (check.exists()) {
             return check;
         } else {
-            if (check.mkdirs()) {
-                System.out.println("FUE CREADO " + check.getName());
-                return check;
-            } else {
-                System.out.println("NO SE PUDO CREAR " + check.getName());
+            try {
+                if (check.createNewFile()) {
+                    System.out.println("FUE CREADO " + check.getName());
+                    return check;
+                } else {
+                    System.out.println("NO SE PUDO CREAR " + check.getName());
+                }
+            } catch (Exception e) {
+               e.printStackTrace();
             }
         }
         return null;

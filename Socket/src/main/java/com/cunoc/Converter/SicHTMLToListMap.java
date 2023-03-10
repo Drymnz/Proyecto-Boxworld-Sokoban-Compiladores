@@ -10,12 +10,16 @@ public class SicHTMLToListMap {
     private final SicHTML converter;
     private ArrayList<Map> listMap = new ArrayList<>();
 
-    public SicHTMLToListMap( SicHTML converter){
+    public SicHTMLToListMap(SicHTML converter) {
         this.converter = converter;
-        
-    }
-    
-    private void makeListMap(){
 
+    }
+
+    private void makeListMap() {
+
+    }
+
+    public ArrayList<Map> getListMap() {
+        return this.listMap;
     }
 }
