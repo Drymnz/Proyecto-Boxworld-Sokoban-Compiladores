@@ -166,7 +166,9 @@ start with inicio;
 /******INICIO DE TODO *****/
 inicio ::= L_APERTURA accion L_CIERRE {:
 //prinFinal();
-:};
+:}
+|
+;
 
 accion ::=
     {:reaction = ListReactionServer.ALL_WORDS;:}WORLDS DOBLE_PUNTO ALL 

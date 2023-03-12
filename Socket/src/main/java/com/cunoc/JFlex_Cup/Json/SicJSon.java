@@ -37,25 +37,26 @@ public class SicJSon extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\075\000\002\002\004\000\002\004\005\000\002\024" +
-    "\002\000\002\005\006\000\002\025\002\000\002\005\006" +
-    "\000\002\026\002\000\002\005\004\000\002\006\005\000" +
-    "\002\006\003\000\002\007\005\000\002\007\005\000\002" +
-    "\007\005\000\002\007\007\000\002\007\007\000\002\027" +
-    "\002\000\002\007\010\000\002\030\002\000\002\007\010" +
-    "\000\002\031\002\000\002\007\010\000\002\013\005\000" +
-    "\002\013\003\000\002\015\005\000\002\016\005\000\002" +
-    "\016\003\000\002\032\002\000\002\022\010\000\002\022" +
-    "\005\000\002\021\005\000\002\021\003\000\002\014\005" +
-    "\000\002\014\005\000\002\020\003\000\002\020\005\000" +
-    "\002\033\002\000\002\017\004\000\002\034\002\000\002" +
-    "\017\004\000\002\023\005\000\002\023\003\000\002\011" +
-    "\005\000\002\011\003\000\002\012\003\000\002\010\005" +
+    "\000\076\000\002\002\004\000\002\004\005\000\002\004" +
+    "\002\000\002\024\002\000\002\005\006\000\002\025\002" +
+    "\000\002\005\006\000\002\026\002\000\002\005\004\000" +
+    "\002\006\005\000\002\006\003\000\002\007\005\000\002" +
+    "\007\005\000\002\007\005\000\002\007\007\000\002\007" +
+    "\007\000\002\027\002\000\002\007\010\000\002\030\002" +
+    "\000\002\007\010\000\002\031\002\000\002\007\010\000" +
+    "\002\013\005\000\002\013\003\000\002\015\005\000\002" +
+    "\016\005\000\002\016\003\000\002\032\002\000\002\022" +
+    "\010\000\002\022\005\000\002\021\005\000\002\021\003" +
+    "\000\002\014\005\000\002\014\005\000\002\020\003\000" +
+    "\002\020\005\000\002\033\002\000\002\017\004\000\002" +
+    "\034\002\000\002\017\004\000\002\023\005\000\002\023" +
+    "\003\000\002\011\005\000\002\011\003\000\002\012\003" +
     "\000\002\010\005\000\002\010\005\000\002\010\005\000" +
     "\002\010\005\000\002\010\005\000\002\010\005\000\002" +
-    "\003\003\000\002\003\003\000\002\002\005\000\002\002" +
-    "\005\000\002\002\005\000\002\002\005\000\002\035\002" +
-    "\000\002\002\006\000\002\002\003\000\002\002\004" });
+    "\010\005\000\002\003\003\000\002\003\003\000\002\002" +
+    "\005\000\002\002\005\000\002\002\005\000\002\002\005" +
+    "\000\002\035\002\000\002\002\006\000\002\002\003\000" +
+    "\002\002\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -63,97 +64,97 @@ public class SicJSon extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\207\000\004\037\004\001\002\000\026\004\ufffb\005" +
-    "\ufffb\006\ufffb\007\ufffb\020\ufffb\021\ufffb\022\ufffb\023\ufffb" +
-    "\046\uffff\047\ufffd\001\002\000\004\002\006\001\002\000" +
-    "\004\002\001\001\002\000\022\004\033\005\032\006\030" +
-    "\007\026\020\025\021\uffee\022\ufff2\023\ufff0\001\002\000" +
-    "\004\047\017\001\002\000\004\046\014\001\002\000\004" +
-    "\040\013\001\002\000\004\002\000\001\002\000\004\026" +
-    "\015\001\002\000\004\045\016\001\002\000\004\040\ufffe" +
-    "\001\002\000\004\026\020\001\002\000\004\051\021\001" +
-    "\002\000\004\040\ufffc\001\002\000\004\021\205\001\002" +
-    "\000\004\023\200\001\002\000\004\022\160\001\002\000" +
-    "\004\026\125\001\002\000\004\026\071\001\002\000\006" +
-    "\030\067\040\ufffa\001\002\000\004\026\065\001\002\000" +
-    "\006\030\ufff8\040\ufff8\001\002\000\004\026\036\001\002" +
-    "\000\004\026\034\001\002\000\004\051\035\001\002\000" +
-    "\006\030\ufff7\040\ufff7\001\002\000\014\003\041\027\044" +
-    "\032\043\035\037\050\046\001\002\000\010\032\043\035" +
-    "\037\050\046\001\002\000\006\030\ufff6\040\ufff6\001\002" +
-    "\000\010\027\uffcd\030\uffcd\040\uffcd\001\002\000\006\030" +
-    "\uffd9\040\uffd9\001\002\000\004\050\061\001\002\000\012" +
-    "\003\041\032\043\035\037\050\046\001\002\000\020\027" +
-    "\uffce\030\uffce\031\051\032\052\033\047\034\050\040\uffce" +
-    "\001\002\000\022\027\uffc6\030\uffc6\031\uffc6\032\uffc6\033" +
-    "\uffc6\034\uffc6\036\uffc6\040\uffc6\001\002\000\010\032\043" +
-    "\035\037\050\046\001\002\000\010\032\043\035\037\050" +
-    "\046\001\002\000\010\032\043\035\037\050\046\001\002" +
-    "\000\010\032\043\035\037\050\046\001\002\000\022\027" +
-    "\uffcb\030\uffcb\031\uffcb\032\uffcb\033\047\034\050\036\uffcb" +
-    "\040\uffcb\001\002\000\022\027\uffcc\030\uffcc\031\uffcc\032" +
-    "\uffcc\033\047\034\050\036\uffcc\040\uffcc\001\002\000\022" +
-    "\027\uffc9\030\uffc9\031\uffc9\032\uffc9\033\uffc9\034\uffc9\036" +
-    "\uffc9\040\uffc9\001\002\000\022\027\uffca\030\uffca\031\uffca" +
-    "\032\uffca\033\uffca\034\uffca\036\uffca\040\uffca\001\002\000" +
-    "\004\027\060\001\002\000\006\030\uffda\040\uffda\001\002" +
-    "\000\022\027\uffc5\030\uffc5\031\uffc5\032\uffc5\033\uffc5\034" +
-    "\uffc5\036\uffc5\040\uffc5\001\002\000\014\031\051\032\052" +
-    "\033\047\034\050\036\uffc8\001\002\000\004\036\064\001" +
-    "\002\000\022\027\uffc7\030\uffc7\031\uffc7\032\uffc7\033\uffc7" +
-    "\034\uffc7\036\uffc7\040\uffc7\001\002\000\014\003\041\027" +
-    "\044\032\043\035\037\050\046\001\002\000\006\030\ufff5" +
-    "\040\ufff5\001\002\000\022\004\033\005\032\006\030\007" +
-    "\026\020\025\021\uffee\022\ufff2\023\ufff0\001\002\000\006" +
-    "\030\ufff9\040\ufff9\001\002\000\004\037\072\001\002\000" +
-    "\020\010\075\011\074\012\103\013\102\014\100\015\101" +
-    "\016\077\001\002\000\006\030\122\040\123\001\002\000" +
-    "\004\026\120\001\002\000\004\026\116\001\002\000\006" +
-    "\030\uffd7\040\uffd7\001\002\000\004\026\114\001\002\000" +
-    "\004\026\112\001\002\000\004\026\110\001\002\000\004" +
-    "\026\106\001\002\000\004\026\104\001\002\000\004\052" +
-    "\105\001\002\000\006\030\uffd3\040\uffd3\001\002\000\004" +
-    "\052\107\001\002\000\006\030\uffd2\040\uffd2\001\002\000" +
-    "\004\052\111\001\002\000\006\030\uffd0\040\uffd0\001\002" +
-    "\000\004\052\113\001\002\000\006\030\uffd1\040\uffd1\001" +
-    "\002\000\004\052\115\001\002\000\006\030\uffcf\040\uffcf" +
-    "\001\002\000\004\052\117\001\002\000\006\030\uffd5\040" +
-    "\uffd5\001\002\000\004\052\121\001\002\000\006\030\uffd4" +
-    "\040\uffd4\001\002\000\020\010\075\011\074\012\103\013" +
-    "\102\014\100\015\101\016\077\001\002\000\006\030\ufff4" +
-    "\040\ufff4\001\002\000\006\030\uffd8\040\uffd8\001\002\000" +
-    "\004\041\126\001\002\000\004\037\131\001\002\000\006" +
-    "\030\uffeb\042\uffeb\001\002\000\006\030\155\042\156\001" +
-    "\002\000\010\017\137\024\132\025\133\001\002\000\004" +
-    "\026\153\001\002\000\004\026\151\001\002\000\006\030" +
-    "\uffe8\040\uffe8\001\002\000\006\030\146\040\147\001\002" +
-    "\000\006\030\uffe0\040\uffe0\001\002\000\004\026\140\001" +
-    "\002\000\006\043\uffde\044\uffdc\001\002\000\004\044\145" +
-    "\001\002\000\004\043\144\001\002\000\006\030\uffdf\040" +
-    "\uffdf\001\002\000\006\030\uffdd\040\uffdd\001\002\000\006" +
-    "\030\uffdb\040\uffdb\001\002\000\010\017\137\024\132\025" +
-    "\133\001\002\000\006\030\uffea\042\uffea\001\002\000\006" +
-    "\030\uffe9\040\uffe9\001\002\000\014\003\041\027\044\032" +
-    "\043\035\037\050\046\001\002\000\006\030\uffe2\040\uffe2" +
-    "\001\002\000\014\003\041\027\044\032\043\035\037\050" +
-    "\046\001\002\000\006\030\uffe1\040\uffe1\001\002\000\004" +
-    "\037\131\001\002\000\006\030\ufff3\040\ufff3\001\002\000" +
-    "\006\030\uffec\042\uffec\001\002\000\004\026\161\001\002" +
-    "\000\004\041\162\001\002\000\004\037\164\001\002\000" +
-    "\006\030\uffe7\042\173\001\002\000\006\024\132\025\133" +
-    "\001\002\000\006\030\167\040\170\001\002\000\006\030" +
-    "\uffe3\040\uffe3\001\002\000\006\024\132\025\133\001\002" +
-    "\000\006\030\uffe5\042\uffe5\001\002\000\006\030\uffe4\040" +
-    "\uffe4\001\002\000\004\030\174\001\002\000\006\030\ufff1" +
-    "\040\ufff1\001\002\000\004\037\175\001\002\000\006\024" +
-    "\132\025\133\001\002\000\006\030\167\040\177\001\002" +
-    "\000\006\030\uffe6\042\uffe6\001\002\000\004\026\201\001" +
-    "\002\000\004\037\202\001\002\000\006\024\132\025\133" +
-    "\001\002\000\006\030\167\040\204\001\002\000\006\030" +
-    "\uffef\040\uffef\001\002\000\004\026\206\001\002\000\004" +
-    "\041\207\001\002\000\004\037\164\001\002\000\006\030" +
-    "\uffe7\042\211\001\002\000\006\030\uffed\040\uffed\001\002" +
-    "" });
+    "\000\207\000\006\002\uffff\037\004\001\002\000\026\004" +
+    "\ufffa\005\ufffa\006\ufffa\007\ufffa\020\ufffa\021\ufffa\022\ufffa" +
+    "\023\ufffa\046\ufffe\047\ufffc\001\002\000\004\002\006\001" +
+    "\002\000\004\002\001\001\002\000\022\004\033\005\032" +
+    "\006\030\007\026\020\025\021\uffed\022\ufff1\023\uffef\001" +
+    "\002\000\004\047\017\001\002\000\004\040\016\001\002" +
+    "\000\004\046\013\001\002\000\004\026\014\001\002\000" +
+    "\004\045\015\001\002\000\004\040\ufffd\001\002\000\004" +
+    "\002\000\001\002\000\004\026\020\001\002\000\004\051" +
+    "\021\001\002\000\004\040\ufffb\001\002\000\004\021\205" +
+    "\001\002\000\004\023\200\001\002\000\004\022\160\001" +
+    "\002\000\004\026\125\001\002\000\004\026\071\001\002" +
+    "\000\006\030\067\040\ufff9\001\002\000\004\026\065\001" +
+    "\002\000\006\030\ufff7\040\ufff7\001\002\000\004\026\036" +
+    "\001\002\000\004\026\034\001\002\000\004\051\035\001" +
+    "\002\000\006\030\ufff6\040\ufff6\001\002\000\014\003\042" +
+    "\027\045\032\043\035\040\050\046\001\002\000\006\030" +
+    "\ufff5\040\ufff5\001\002\000\010\032\043\035\040\050\046" +
+    "\001\002\000\006\030\uffd8\040\uffd8\001\002\000\010\027" +
+    "\uffcc\030\uffcc\040\uffcc\001\002\000\004\050\061\001\002" +
+    "\000\020\027\uffcd\030\uffcd\031\053\032\054\033\051\034" +
+    "\052\040\uffcd\001\002\000\012\003\042\032\043\035\040" +
+    "\050\046\001\002\000\022\027\uffc5\030\uffc5\031\uffc5\032" +
+    "\uffc5\033\uffc5\034\uffc5\036\uffc5\040\uffc5\001\002\000\004" +
+    "\027\050\001\002\000\006\030\uffd9\040\uffd9\001\002\000" +
+    "\010\032\043\035\040\050\046\001\002\000\010\032\043" +
+    "\035\040\050\046\001\002\000\010\032\043\035\040\050" +
+    "\046\001\002\000\010\032\043\035\040\050\046\001\002" +
+    "\000\022\027\uffca\030\uffca\031\uffca\032\uffca\033\051\034" +
+    "\052\036\uffca\040\uffca\001\002\000\022\027\uffcb\030\uffcb" +
+    "\031\uffcb\032\uffcb\033\051\034\052\036\uffcb\040\uffcb\001" +
+    "\002\000\022\027\uffc8\030\uffc8\031\uffc8\032\uffc8\033\uffc8" +
+    "\034\uffc8\036\uffc8\040\uffc8\001\002\000\022\027\uffc9\030" +
+    "\uffc9\031\uffc9\032\uffc9\033\uffc9\034\uffc9\036\uffc9\040\uffc9" +
+    "\001\002\000\022\027\uffc4\030\uffc4\031\uffc4\032\uffc4\033" +
+    "\uffc4\034\uffc4\036\uffc4\040\uffc4\001\002\000\014\031\053" +
+    "\032\054\033\051\034\052\036\uffc7\001\002\000\004\036" +
+    "\064\001\002\000\022\027\uffc6\030\uffc6\031\uffc6\032\uffc6" +
+    "\033\uffc6\034\uffc6\036\uffc6\040\uffc6\001\002\000\014\003" +
+    "\042\027\045\032\043\035\040\050\046\001\002\000\006" +
+    "\030\ufff4\040\ufff4\001\002\000\022\004\033\005\032\006" +
+    "\030\007\026\020\025\021\uffed\022\ufff1\023\uffef\001\002" +
+    "\000\006\030\ufff8\040\ufff8\001\002\000\004\037\072\001" +
+    "\002\000\020\010\075\011\074\012\103\013\102\014\100" +
+    "\015\101\016\077\001\002\000\006\030\122\040\123\001" +
+    "\002\000\004\026\120\001\002\000\004\026\116\001\002" +
+    "\000\006\030\uffd6\040\uffd6\001\002\000\004\026\114\001" +
+    "\002\000\004\026\112\001\002\000\004\026\110\001\002" +
+    "\000\004\026\106\001\002\000\004\026\104\001\002\000" +
+    "\004\052\105\001\002\000\006\030\uffd2\040\uffd2\001\002" +
+    "\000\004\052\107\001\002\000\006\030\uffd1\040\uffd1\001" +
+    "\002\000\004\052\111\001\002\000\006\030\uffcf\040\uffcf" +
+    "\001\002\000\004\052\113\001\002\000\006\030\uffd0\040" +
+    "\uffd0\001\002\000\004\052\115\001\002\000\006\030\uffce" +
+    "\040\uffce\001\002\000\004\052\117\001\002\000\006\030" +
+    "\uffd4\040\uffd4\001\002\000\004\052\121\001\002\000\006" +
+    "\030\uffd3\040\uffd3\001\002\000\020\010\075\011\074\012" +
+    "\103\013\102\014\100\015\101\016\077\001\002\000\006" +
+    "\030\ufff3\040\ufff3\001\002\000\006\030\uffd7\040\uffd7\001" +
+    "\002\000\004\041\126\001\002\000\004\037\131\001\002" +
+    "\000\006\030\uffea\042\uffea\001\002\000\006\030\155\042" +
+    "\156\001\002\000\010\017\137\024\132\025\133\001\002" +
+    "\000\004\026\153\001\002\000\004\026\151\001\002\000" +
+    "\006\030\uffe7\040\uffe7\001\002\000\006\030\146\040\147" +
+    "\001\002\000\006\030\uffdf\040\uffdf\001\002\000\004\026" +
+    "\140\001\002\000\006\043\uffdd\044\uffdb\001\002\000\004" +
+    "\044\145\001\002\000\004\043\144\001\002\000\006\030" +
+    "\uffde\040\uffde\001\002\000\006\030\uffdc\040\uffdc\001\002" +
+    "\000\006\030\uffda\040\uffda\001\002\000\010\017\137\024" +
+    "\132\025\133\001\002\000\006\030\uffe9\042\uffe9\001\002" +
+    "\000\006\030\uffe8\040\uffe8\001\002\000\014\003\042\027" +
+    "\045\032\043\035\040\050\046\001\002\000\006\030\uffe1" +
+    "\040\uffe1\001\002\000\014\003\042\027\045\032\043\035" +
+    "\040\050\046\001\002\000\006\030\uffe0\040\uffe0\001\002" +
+    "\000\004\037\131\001\002\000\006\030\ufff2\040\ufff2\001" +
+    "\002\000\006\030\uffeb\042\uffeb\001\002\000\004\026\161" +
+    "\001\002\000\004\041\162\001\002\000\004\037\164\001" +
+    "\002\000\006\030\uffe6\042\173\001\002\000\006\024\132" +
+    "\025\133\001\002\000\006\030\167\040\170\001\002\000" +
+    "\006\030\uffe2\040\uffe2\001\002\000\006\024\132\025\133" +
+    "\001\002\000\006\030\uffe4\042\uffe4\001\002\000\006\030" +
+    "\uffe3\040\uffe3\001\002\000\004\030\174\001\002\000\006" +
+    "\030\ufff0\040\ufff0\001\002\000\004\037\175\001\002\000" +
+    "\006\024\132\025\133\001\002\000\006\030\167\040\177" +
+    "\001\002\000\006\030\uffe5\042\uffe5\001\002\000\004\026" +
+    "\201\001\002\000\004\037\202\001\002\000\006\024\132" +
+    "\025\133\001\002\000\006\030\167\040\204\001\002\000" +
+    "\006\030\uffee\040\uffee\001\002\000\004\026\206\001\002" +
+    "\000\004\041\207\001\002\000\004\037\164\001\002\000" +
+    "\006\030\uffe6\042\211\001\002\000\006\030\uffec\040\uffec" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -161,8 +162,8 @@ public class SicJSon extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\207\000\004\004\004\001\001\000\012\005\011\024" +
-    "\010\025\007\026\006\001\001\000\002\001\001\000\002" +
+    "\000\207\000\004\004\004\001\001\000\012\005\010\024" +
+    "\011\025\007\026\006\001\001\000\002\001\001\000\002" +
     "\001\001\000\014\006\026\007\030\027\023\030\022\031" +
     "\021\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
@@ -171,16 +172,16 @@ public class SicJSon extends java_cup.runtime.lr_parser {
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\010\002\044\003\041\023\037\001\001\000\004\002" +
-    "\061\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\002\044\003\056\001" +
-    "\001\000\002\001\001\000\002\001\001\000\004\002\055" +
-    "\001\001\000\004\002\054\001\001\000\004\002\053\001" +
-    "\001\000\004\002\052\001\001\000\002\001\001\000\002" +
+    "\000\010\002\043\003\040\023\036\001\001\000\002\001" +
+    "\001\000\004\002\061\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\002" +
+    "\043\003\046\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\002\057\001\001\000\004\002" +
+    "\056\001\001\000\004\002\055\001\001\000\004\002\054" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\004\035\062" +
     "\001\001\000\002\001\001\000\002\001\001\000\010\002" +
-    "\044\003\041\023\065\001\001\000\002\001\001\000\012" +
+    "\043\003\040\023\065\001\001\000\002\001\001\000\012" +
     "\007\067\027\023\030\022\031\021\001\001\000\002\001" +
     "\001\000\002\001\001\000\006\010\075\011\072\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
@@ -199,8 +200,8 @@ public class SicJSon extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\006\014\135\020" +
     "\147\001\001\000\002\001\001\000\002\001\001\000\010" +
-    "\002\044\003\041\023\151\001\001\000\002\001\001\000" +
-    "\010\002\044\003\041\023\153\001\001\000\002\001\001" +
+    "\002\043\003\040\023\151\001\001\000\002\001\001\000" +
+    "\010\002\043\003\040\023\153\001\001\000\002\001\001" +
     "\000\004\015\156\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\004\022\162" +
     "\001\001\000\004\032\171\001\001\000\006\014\165\021" +
@@ -428,7 +429,16 @@ class CUP$SicJSon$actions {
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // NT$0 ::= 
+          case 2: // inicio ::= 
+            {
+              Object RESULT =null;
+
+              CUP$SicJSon$result = parser.getSymbolFactory().newSymbol("inicio",2, ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()), RESULT);
+            }
+          return CUP$SicJSon$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // NT$0 ::= 
             {
               Object RESULT =null;
 reaction = ListReactionServer.ALL_WORDS;
@@ -437,7 +447,7 @@ reaction = ListReactionServer.ALL_WORDS;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // accion ::= NT$0 WORLDS DOBLE_PUNTO ALL 
+          case 4: // accion ::= NT$0 WORLDS DOBLE_PUNTO ALL 
             {
               Object RESULT =null;
               // propagate RESULT from NT$0
@@ -448,7 +458,7 @@ reaction = ListReactionServer.ALL_WORDS;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // NT$1 ::= 
+          case 5: // NT$1 ::= 
             {
               Object RESULT =null;
 reaction = ListReactionServer.WORD;
@@ -457,7 +467,7 @@ reaction = ListReactionServer.WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // accion ::= NT$1 WORLD DOBLE_PUNTO CARACTER 
+          case 6: // accion ::= NT$1 WORLD DOBLE_PUNTO CARACTER 
             {
               Object RESULT =null;
               // propagate RESULT from NT$1
@@ -476,7 +486,7 @@ reaction = ListReactionServer.WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // NT$2 ::= 
+          case 7: // NT$2 ::= 
             {
               Object RESULT =null;
 reaction = ListReactionServer.ADD_WORD;
@@ -485,7 +495,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // accion ::= NT$2 crear_mundo 
+          case 8: // accion ::= NT$2 crear_mundo 
             {
               Object RESULT =null;
               // propagate RESULT from NT$2
@@ -496,7 +506,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // crear_mundo ::= crear_mundo COMA atributos 
+          case 9: // crear_mundo ::= crear_mundo COMA atributos 
             {
               Object RESULT =null;
 
@@ -505,7 +515,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // crear_mundo ::= atributos 
+          case 10: // crear_mundo ::= atributos 
             {
               Object RESULT =null;
 
@@ -514,7 +524,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // atributos ::= NAME DOBLE_PUNTO CARACTER 
+          case 11: // atributos ::= NAME DOBLE_PUNTO CARACTER 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -531,7 +541,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // atributos ::= ROWS DOBLE_PUNTO entre_comillas_numero 
+          case 12: // atributos ::= ROWS DOBLE_PUNTO entre_comillas_numero 
             {
               Object RESULT =null;
 				
@@ -549,7 +559,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // atributos ::= COLS DOBLE_PUNTO entre_comillas_numero 
+          case 13: // atributos ::= COLS DOBLE_PUNTO entre_comillas_numero 
             {
               Object RESULT =null;
 				
@@ -567,7 +577,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // atributos ::= COFIG DOBLE_PUNTO L_APERTURA bucle_color L_CIERRE 
+          case 14: // atributos ::= COFIG DOBLE_PUNTO L_APERTURA bucle_color L_CIERRE 
             {
               Object RESULT =null;
 
@@ -576,7 +586,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // atributos ::= BOARD DOBLE_PUNTO C_APERTURA seleccion_poss C_CIERRE 
+          case 15: // atributos ::= BOARD DOBLE_PUNTO C_APERTURA seleccion_poss C_CIERRE 
             {
               Object RESULT =null;
 
@@ -585,7 +595,7 @@ reaction = ListReactionServer.ADD_WORD;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // NT$3 ::= 
+          case 16: // NT$3 ::= 
             {
               Object RESULT =null;
 typeSquare = ListSquare.TARGET;
@@ -594,7 +604,7 @@ typeSquare = ListSquare.TARGET;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // atributos ::= NT$3 TARGETS DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
+          case 17: // atributos ::= NT$3 TARGETS DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
             {
               Object RESULT =null;
               // propagate RESULT from NT$3
@@ -605,7 +615,7 @@ typeSquare = ListSquare.TARGET;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // NT$4 ::= 
+          case 18: // NT$4 ::= 
             {
               Object RESULT =null;
 typeSquare = ListSquare.PLAY;
@@ -614,7 +624,7 @@ typeSquare = ListSquare.PLAY;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // atributos ::= NT$4 PLAYER DOBLE_PUNTO L_APERTURA solo_poss L_CIERRE 
+          case 19: // atributos ::= NT$4 PLAYER DOBLE_PUNTO L_APERTURA solo_poss L_CIERRE 
             {
               Object RESULT =null;
               // propagate RESULT from NT$4
@@ -625,7 +635,7 @@ typeSquare = ListSquare.PLAY;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // NT$5 ::= 
+          case 20: // NT$5 ::= 
             {
               Object RESULT =null;
 typeSquare = ListSquare.BOX;
@@ -634,7 +644,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // atributos ::= NT$5 BOXES DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
+          case 21: // atributos ::= NT$5 BOXES DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
             {
               Object RESULT =null;
               // propagate RESULT from NT$5
@@ -645,7 +655,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // seleccion_poss ::= seleccion_poss COMA pos_agrupar 
+          case 22: // seleccion_poss ::= seleccion_poss COMA pos_agrupar 
             {
               Object RESULT =null;
 
@@ -654,7 +664,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // seleccion_poss ::= pos_agrupar 
+          case 23: // seleccion_poss ::= pos_agrupar 
             {
               Object RESULT =null;
 
@@ -663,7 +673,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // pos_agrupar ::= L_APERTURA atributos_poss L_CIERRE 
+          case 24: // pos_agrupar ::= L_APERTURA atributos_poss L_CIERRE 
             {
               Object RESULT =null;
 		addSquare();
@@ -672,7 +682,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // atributos_poss ::= atributos_poss COMA typo_poss 
+          case 25: // atributos_poss ::= atributos_poss COMA typo_poss 
             {
               Object RESULT =null;
 
@@ -681,7 +691,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // atributos_poss ::= typo_poss 
+          case 26: // atributos_poss ::= typo_poss 
             {
               Object RESULT =null;
 
@@ -690,7 +700,7 @@ typeSquare = ListSquare.BOX;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // NT$6 ::= 
+          case 27: // NT$6 ::= 
             {
               Object RESULT =null;
 addSquare();
@@ -699,7 +709,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // varios_bloques ::= varios_bloques NT$6 COMA L_APERTURA solo_poss L_CIERRE 
+          case 28: // varios_bloques ::= varios_bloques NT$6 COMA L_APERTURA solo_poss L_CIERRE 
             {
               Object RESULT =null;
               // propagate RESULT from NT$6
@@ -710,7 +720,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // varios_bloques ::= L_APERTURA solo_poss L_CIERRE 
+          case 29: // varios_bloques ::= L_APERTURA solo_poss L_CIERRE 
             {
               Object RESULT =null;
 
@@ -719,7 +729,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // solo_poss ::= solo_poss COMA pos 
+          case 30: // solo_poss ::= solo_poss COMA pos 
             {
               Object RESULT =null;
 
@@ -728,7 +738,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // solo_poss ::= pos 
+          case 31: // solo_poss ::= pos 
             {
               Object RESULT =null;
 
@@ -737,7 +747,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // pos ::= POSX DOBLE_PUNTO entre_comillas_numero 
+          case 32: // pos ::= POSX DOBLE_PUNTO entre_comillas_numero 
             {
               Object RESULT =null;
 		possX=(int) contador;
@@ -746,7 +756,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // pos ::= POSY DOBLE_PUNTO entre_comillas_numero 
+          case 33: // pos ::= POSY DOBLE_PUNTO entre_comillas_numero 
             {
               Object RESULT =null;
 		possY=(int) contador;
@@ -755,7 +765,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // typo_poss ::= pos 
+          case 34: // typo_poss ::= pos 
             {
               Object RESULT =null;
 
@@ -764,7 +774,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // typo_poss ::= TYPE DOBLE_PUNTO tipo_board 
+          case 35: // typo_poss ::= TYPE DOBLE_PUNTO tipo_board 
             {
               Object RESULT =null;
 
@@ -773,7 +783,7 @@ addSquare();
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // NT$7 ::= 
+          case 36: // NT$7 ::= 
             {
               Object RESULT =null;
 typeSquare = ListSquare.HALL;
@@ -782,7 +792,7 @@ typeSquare = ListSquare.HALL;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // tipo_board ::= NT$7 HALL 
+          case 37: // tipo_board ::= NT$7 HALL 
             {
               Object RESULT =null;
               // propagate RESULT from NT$7
@@ -793,7 +803,7 @@ typeSquare = ListSquare.HALL;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // NT$8 ::= 
+          case 38: // NT$8 ::= 
             {
               Object RESULT =null;
 typeSquare = ListSquare.BRICK;
@@ -802,7 +812,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // tipo_board ::= NT$8 BRICK 
+          case 39: // tipo_board ::= NT$8 BRICK 
             {
               Object RESULT =null;
               // propagate RESULT from NT$8
@@ -813,7 +823,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 39: // entre_comillas_numero ::= COMILLAS j COMILLAS 
+          case 40: // entre_comillas_numero ::= COMILLAS j COMILLAS 
             {
               Object RESULT =null;
 
@@ -822,7 +832,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // entre_comillas_numero ::= j 
+          case 41: // entre_comillas_numero ::= j 
             {
               Object RESULT =null;
 
@@ -831,7 +841,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 41: // bucle_color ::= bucle_color COMA color 
+          case 42: // bucle_color ::= bucle_color COMA color 
             {
               Object RESULT =null;
 
@@ -840,7 +850,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 42: // bucle_color ::= color 
+          case 43: // bucle_color ::= color 
             {
               Object RESULT =null;
 
@@ -849,7 +859,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 43: // seleccionar_color ::= color 
+          case 44: // seleccionar_color ::= color 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -861,7 +871,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 44: // color ::= BOX_COLOR DOBLE_PUNTO COLOR 
+          case 45: // color ::= BOX_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -873,7 +883,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 45: // color ::= BOX_ON_COLOR DOBLE_PUNTO COLOR 
+          case 46: // color ::= BOX_ON_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -885,7 +895,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 46: // color ::= TAGET_COLOR DOBLE_PUNTO COLOR 
+          case 47: // color ::= TAGET_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -897,7 +907,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 47: // color ::= BRICK_COLOR DOBLE_PUNTO COLOR 
+          case 48: // color ::= BRICK_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -909,7 +919,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 48: // color ::= HALL_COLOR DOBLE_PUNTO COLOR 
+          case 49: // color ::= HALL_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -921,7 +931,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 49: // color ::= UNDEFINED_COLOR DOBLE_PUNTO COLOR 
+          case 50: // color ::= UNDEFINED_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -933,7 +943,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 50: // color ::= PLAYER_COLOR DOBLE_PUNTO COLOR 
+          case 51: // color ::= PLAYER_COLOR DOBLE_PUNTO COLOR 
             {
               Object RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -945,7 +955,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 51: // j ::= o 
+          case 52: // j ::= o 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -961,7 +971,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 52: // j ::= error 
+          case 53: // j ::= error 
             {
               String RESULT =null;
 		
@@ -971,7 +981,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 53: // o ::= o SUMAR o 
+          case 54: // o ::= o SUMAR o 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.elementAt(CUP$SicJSon$top-2)).left;
@@ -991,7 +1001,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 54: // o ::= o RESTAR o 
+          case 55: // o ::= o RESTAR o 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.elementAt(CUP$SicJSon$top-2)).left;
@@ -1011,7 +1021,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 55: // o ::= o DIVIDIR o 
+          case 56: // o ::= o DIVIDIR o 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.elementAt(CUP$SicJSon$top-2)).left;
@@ -1031,7 +1041,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 56: // o ::= o MULTIPLICAR o 
+          case 57: // o ::= o MULTIPLICAR o 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.elementAt(CUP$SicJSon$top-2)).left;
@@ -1051,7 +1061,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 57: // NT$9 ::= 
+          case 58: // NT$9 ::= 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -1063,7 +1073,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 58: // o ::= P_APERTURA o NT$9 P_CIERRE 
+          case 59: // o ::= P_APERTURA o NT$9 P_CIERRE 
             {
               String RESULT =null;
               // propagate RESULT from NT$9
@@ -1077,7 +1087,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 59: // o ::= ENTERO 
+          case 60: // o ::= ENTERO 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;
@@ -1089,7 +1099,7 @@ typeSquare = ListSquare.BRICK;
           return CUP$SicJSon$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 60: // o ::= RESTAR ENTERO 
+          case 61: // o ::= RESTAR ENTERO 
             {
               String RESULT =null;
 		int aleft = ((java_cup.runtime.Symbol)CUP$SicJSon$stack.peek()).left;

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.Reader;
 import java.io.StringReader;
 import com.cunoc.Map.Map;
+import com.cunoc.Server.ReactionServer;
 
 import org.junit.Test;
 
@@ -129,6 +130,7 @@ public class AppTest
             sic.parse();
             System.out.println(lexema.getReport());
         } catch (Exception e) {
+            e.printStackTrace(System.out);
             return false;
         } 
         //
@@ -152,5 +154,35 @@ public class AppTest
         Map ten = pep.getMap();
         System.out.println(new MapToString(ten).formatXML());
         assertTrue(true);
+    }
+
+        /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void reactionServerForServerResponse(){
+        /*enviar solicitud de add mapa */
+        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        ReactionServer user = new ReactionServer(App.file, archivo());
+        
+        assertTrue(true);
+    }
+     /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void list()
+    {
+        assertTrue( lexicoSicHTML(archivoText2()) );
+    }
+
+        /**
+     * @return
+     */
+    private String archivoText2(){
+        //linux
+        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.json"));
+        //windows
+        //return new FileConverter().upLoadTextFile(new File("D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json"));
     }
 }

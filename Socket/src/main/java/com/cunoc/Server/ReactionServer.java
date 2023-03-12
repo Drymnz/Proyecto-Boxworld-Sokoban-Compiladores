@@ -1,5 +1,7 @@
 package com.cunoc.Server;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -19,9 +21,11 @@ public class ReactionServer {
 
     private final String solicitud;
     private String result;
+    private File dataBase;
 
-    public ReactionServer(String solicitud) {
+    public ReactionServer(File dataBase,String solicitud) {
         this.solicitud = solicitud;
+        this.dataBase = dataBase;
         analysis();
     }
 
@@ -42,15 +46,21 @@ public class ReactionServer {
         if (sic.getReaction() == ListReactionServer.ERROR) {
 
         } else {// if there is a request to make
-            String listWords = new FileConverter().upLoadTextFile(App.file);// get data base
+            if (dataBase == null) {
+                dataBase = (new FileConverter()).addressExists(dataBase);
+            }
+            String listWords = new FileConverter().upLoadTextFile(dataBase);// get data base
             Reader reader = new StringReader(listWords);
             LexicoHTML lexema = new LexicoHTML(reader);
             SicHTML dataBaseSic = new SicHTML(lexema);
-            try {
-                dataBaseSic.parse();
-                System.out.println(lexema.getReport());
-            } catch (Exception e) {
-                Console.ConsoleText.append("\nError al analizar");
+            if (!listWords.isBlank()) {
+                try {
+                    dataBaseSic.parse();
+                    System.out.println(lexema.getReport());
+                } catch (Exception e) {
+                    System.out.print(e);
+                    Console.ConsoleText.append("\nError al analizar");
+                }
             }
             // actions with the database
             switch (sic.getReaction()) {
@@ -63,11 +73,13 @@ public class ReactionServer {
                             notRepeated = true;
                         }
                     }
-                    if (!notRepeated) {// unique id
+                    if (notRepeated) {// unique id
                         dataBaseSic.getListMap().add(t4en);// add map
                         FileWriteManager writerFila = new FileWriteManager();
-                        if (writerFila.waitText(App.file, (new ArrayListMapToString(dataBaseSic.getListMap())).getResultFormatXML())) {
+                        String returnServer =  (new ArrayListMapToString(dataBaseSic.getListMap())).getResultFormatXML();
+                        if (writerFila.waitText(App.file,returnServer)) {
                             //yes write
+                            this.result = returnServer; 
                         }else{
                             //error
                         }

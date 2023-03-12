@@ -49,4 +49,19 @@ public class FileConverter {
         }
         return null;
     }
+
+    public boolean isFileexists(File check){
+        try {
+            if (check.createNewFile()) {
+                System.out.println("FUE CREADO " + check.getName());
+                return true;
+            } else {
+                System.out.println("NO SE PUDO CREAR " + check.getName());
+                return false;
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+           return false;
+        }
+    }
 }

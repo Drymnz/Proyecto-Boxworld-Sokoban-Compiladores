@@ -11,10 +11,9 @@ public class App {
     public static final String DATA_BASE = "DATA-BASE.XML";
     public static File file = null;
     public static void main(String[] args) {
-        
-        FileConverter test_jar = new FileConverter(); 
+
         file = new File(DATA_BASE);
-        file = test_jar.addressExists(file);
+        file = (new FileConverter()).addressExists(file);
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -48,7 +48,6 @@ public class MapToString {
                 returnFinal += endTypeBox(item_Square.getType());
             }
         }
-        returnFinal += "\n";
         return returnFinal;
     }
 
@@ -62,6 +61,8 @@ public class MapToString {
                 return "\t\t<targets>\n";
             case PLAY:
                 return "\t\t<player>\n";
+                case BOX:
+                return "\t\t<boxes>\n";
             default:
                 return "";
         }
@@ -76,6 +77,8 @@ public class MapToString {
                 return "\t\t</targets>\n";
             case PLAY:
                 return "\t\t</player>\n";
+            case BOX:
+                return "\t\t</boxes>\n";
             default:
                 return "";
         }
