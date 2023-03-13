@@ -2,7 +2,7 @@
 	<worlds>
 
 	<world>
-		<name>"tatoine"</name>
+		<name>tatoine</name>
 		<rows>5</rows>
 		<cols>4</cols>
 		<config>
@@ -112,5 +112,5 @@
 			<type>BRICK</type>
 		</board>
 
-	<world>
-<worlds>
+	</world>
+</worlds>

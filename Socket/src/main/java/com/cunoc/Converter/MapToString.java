@@ -31,7 +31,7 @@ public class MapToString {
         this.resultFianal += "\t\t"+this.waxSimple(this.converter.getPLAY_COLOR(), "player_color");
         this.resultFianal += "\t\t</config>";
         this.resultFianal += this.listSquare();
-        this.resultFianal += "\n\t<world>";
+        this.resultFianal += "\n\t</world>";
     }
 
     private String waxSimple(String between, String sides) {

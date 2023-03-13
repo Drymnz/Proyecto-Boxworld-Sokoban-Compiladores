@@ -14,24 +14,25 @@ public class sym {
   public static final int INICIO_COLS = 10;
   public static final int FINAL_BOXES = 17;
   public static final int INICIO_PLAYER_COLOR = 38;
-  public static final int ENTERO = 44;
+  public static final int ENTERO = 45;
   public static final int FINAL_TARGET_COLOR = 31;
   public static final int FINAL_PLAYER = 21;
   public static final int FINAL_HALL_COLOR = 35;
   public static final int INICIO_TARGET_COLOR = 30;
-  public static final int CARACTER = 45;
+  public static final int CARACTER = 46;
   public static final int FINAL_ROWS = 9;
   public static final int INICIO_BOARD = 14;
-  public static final int HALL = 43;
+  public static final int HALL = 44;
   public static final int INICIO_BRICK_COLOR = 32;
   public static final int FINAL_TYPE = 41;
-  public static final int BRICK = 42;
+  public static final int BRICK = 43;
   public static final int EOF = 0;
+  public static final int SYM = 42;
   public static final int error = 1;
   public static final int INICIO_WORLDS = 2;
   public static final int INICIO_ROWS = 8;
   public static final int FINAL_BOARD = 15;
-  public static final int COLOR = 46;
+  public static final int COLOR = 47;
   public static final int INICIO_WORLD = 4;
   public static final int INICIO_UNDEFINED_COLOR = 36;
   public static final int INICIO_TYPE = 40;
@@ -98,6 +99,7 @@ public class sym {
   "FINAL_PLAYER_COLOR",
   "INICIO_TYPE",
   "FINAL_TYPE",
+  "SYM",
   "BRICK",
   "HALL",
   "ENTERO",

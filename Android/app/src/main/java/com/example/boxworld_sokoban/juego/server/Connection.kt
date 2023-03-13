@@ -7,14 +7,14 @@ import java.net.InetAddress
 import java.net.Socket
 
 
-class Connection {
+class Connection(port:Int,button:Button,textJson:String) {
 
     private val port:Int
     private val button:Button
     private val textJson:String
     private val SERVER_IP = "10.0.2.2"
 
-    constructor(port:Int,button:Button,textJson:String){
+    init{
         this.port = port
         this.button = button
         this.textJson = textJson

@@ -164,7 +164,7 @@ public class AppTest
         /*enviar solicitud de add mapa */
         App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
         ReactionServer user = new ReactionServer(App.file, archivo());
-        
+        System.out.println(user.getResult());
         assertTrue(true);
     }
      /**
@@ -181,8 +181,29 @@ public class AppTest
      */
     private String archivoText2(){
         //linux
-        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.json"));
+        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
         //windows
         //return new FileConverter().upLoadTextFile(new File("D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json"));
+    }
+ /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void worldListRequest(){
+        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        ReactionServer user = new ReactionServer(App.file, "{\n"+"\"worlds\": \"all\"\n"+"}");
+        System.out.println(user.getResult());
+        assertTrue(true);
+    }
+
+    /**
+     * Rigorous Test :-)
+     */
+    @Test
+    public void worldRequest(){
+        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        ReactionServer user = new ReactionServer(App.file, "{\n"+"\"world\": \"tatoine\"\n"+"}");
+        System.out.println(user.getResult());
+        assertTrue(true);
     }
 }

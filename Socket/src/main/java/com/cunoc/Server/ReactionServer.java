@@ -46,7 +46,7 @@ public class ReactionServer {
         if (sic.getReaction() == ListReactionServer.ERROR) {
 
         } else {// if there is a request to make
-            if (dataBase == null) {
+            if (dataBase == null || !dataBase.exists()) {
                 dataBase = (new FileConverter()).addressExists(dataBase);
             }
             String listWords = new FileConverter().upLoadTextFile(dataBase);// get data base
@@ -70,7 +70,7 @@ public class ReactionServer {
                     Boolean notRepeated = (dataBaseSic.getListMap().isEmpty())? true : false;
                     for (Map iterable_element : dataBaseSic.getListMap()) {
                         if (iterable_element.getName().equals(t4en.getName())) {
-                            notRepeated = true;
+                            notRepeated = false;
                         }
                     }
                     if (notRepeated) {// unique id
@@ -85,7 +85,7 @@ public class ReactionServer {
                         }
                         
                     }else {
-                        //not add
+                        this.result = "Esta repetido";
                     }
                     break;
                 case ALL_WORDS:// get list name words
@@ -93,13 +93,14 @@ public class ReactionServer {
                     for (Map iterable_element : dataBaseSic.getListMap()) {
                         this.result += "\t\t<world>"+iterable_element.getName()+"</world>\n";
                     }
-                    this.result += "\n\t<worlds>";
+                    this.result += "\t</worlds>";
                     break;
                 case WORD:// get list word in data base
                     Map match = null;
                     for (Map iterable_element : dataBaseSic.getListMap()) {
                         if (iterable_element.getName().equals(sic.getName())) {
                             match = iterable_element;
+                            break;
                         }
                     }
                     if (match == null) {

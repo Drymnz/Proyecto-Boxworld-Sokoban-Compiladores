@@ -456,7 +456,8 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
     private String report = "";
 
     private void print(String token){
-        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        System.out.println(token);
     }
     public String getReport(){
         return this.report;
@@ -887,7 +888,7 @@ public class LexicoHTML implements java_cup.runtime.Scanner {
             // fall through
           case 52: break;
           case 4:
-            { print(yytext() );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext()));
+            { print("COLOR" );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext()));
             }
             // fall through
           case 53: break;

@@ -17,7 +17,8 @@ import com.cunoc.Server.Console;
     private String report = "";
 
     private void print(String token){
-        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        System.out.println(token);
     }
     public String getReport(){
         return this.report;
@@ -88,6 +89,6 @@ espacio =[\n | \r | \t | \f | \b]+
 /*Token*/
 {CARACTER}          {print("{ID}" );return new Symbol(sym.CARACTER,yyline,yycolumn, (yytext())); }
 {ENTERO}            {print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
-{COLOR}             {print(yytext() );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext())); }
+{COLOR}             {print("COLOR" );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/
 [^]                 { print("ERROR"); }

@@ -18,7 +18,7 @@ public class ArrayListMapToString {
         for (Map iterable_element : list) {
             returnResult += "\n" + (new MapToString(iterable_element)).formatXML();
         }
-        returnResult += "\n<worlds>";
+        returnResult += "\n</worlds>";
         return returnResult;
     }
 

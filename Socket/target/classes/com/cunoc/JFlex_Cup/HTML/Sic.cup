@@ -169,6 +169,7 @@ terminal INICIO_POSX,FINAL_POSX,INICIO_POSY,FINAL_POSY;
 terminal INICIO_BOX_COLOR,FINAL_BOX_COLOR,INICIO_BOX_COLOR_ON,FINAL_BOX_COLOR_ON,INICIO_TARGET_COLOR,FINAL_TARGET_COLOR;//color
 terminal INICIO_BRICK_COLOR,FINAL_BRICK_COLOR,INICIO_HALL_COLOR,FINAL_HALL_COLOR,INICIO_UNDEFINED_COLOR,FINAL_UNDEFINED_COLOR;
 terminal INICIO_PLAYER_COLOR, FINAL_PLAYER_COLOR,INICIO_TYPE,FINAL_TYPE;
+terminal SYM;
 /****************NUMERICOS***********************/
 terminal BRICK,HALL;//pasio o ladrillo
 terminal String ENTERO,CARACTER,COLOR; /*DATOS*/
@@ -198,7 +199,7 @@ datos_mapa ::=
 atributos ::=
     INICIO_NAME CARACTER:a FINAL_NAME {:
     if (name == null) {
-      name = a;
+      name = a.replaceAll("\"", "");
     }else{
       System.out.println("ya tiene un nombre");
     }:}

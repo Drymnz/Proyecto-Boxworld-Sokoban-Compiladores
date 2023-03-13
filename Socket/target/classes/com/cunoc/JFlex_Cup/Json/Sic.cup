@@ -149,6 +149,7 @@ terminal SUMAR,RESTAR,DIVIDIR,MULTIPLICAR;/*SIMBOLOS DE OPERACION*/
 terminal P_APERTURA,P_CIERRE,L_APERTURA,L_CIERRE,C_APERTURA,C_CIERRE;/*AGRUPACION*/
 terminal HALL,BRICK;//pasio o ladrillo
 terminal ALL,WORLDS,WORLD;
+terminal SYM;
 terminal String ENTERO,CARACTER,COLOR; /*DATOS*/
 /*************************************NO TERMINALES******************************************************/
 non terminal String o,j;/*para el uso de operaciones aritmeticas*/
@@ -174,7 +175,7 @@ accion ::=
     {:reaction = ListReactionServer.ALL_WORDS;:}WORLDS DOBLE_PUNTO ALL 
     |{:reaction = ListReactionServer.WORD;:}WORLD DOBLE_PUNTO CARACTER:a {:
     if (name == null) {
-      name = a;
+      name = a.replaceAll("\"", "");
     }else{
       System.out.println("ya tiene un nombre");
     }:}
@@ -189,7 +190,7 @@ crear_mundo ::=
 atributos ::=
     NAME DOBLE_PUNTO CARACTER:a {:
     if (name == null) {
-      name = a;
+      name = a.replaceAll("\"", "");
     }else{
       System.out.println("ya tiene un nombre");
     }:}
