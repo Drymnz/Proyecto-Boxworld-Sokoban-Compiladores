@@ -23,6 +23,17 @@ import com.cunoc.JFlex_Cup.Json.SicJSon;
  */
 public class AppTest 
 {
+    private String ruta_json = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
+    //private String ruta_json = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
+
+    private String ruta_xml = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
+    //private String ruta_xml = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
+
+
+     private String ruta_xml_two = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
+     //private String ruta_xml_two = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
+
+     
     /**
      * Rigorous Test :-)
      */
@@ -51,10 +62,7 @@ public class AppTest
      * @return
      */
     private String archivo(){
-        //linux
-        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json"));
-        //windows
-        //return new FileConverter().upLoadTextFile(new File("D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json"));
+        return new FileConverter().upLoadTextFile(new File(ruta_json));
     }
 
     /**
@@ -62,7 +70,7 @@ public class AppTest
      */
     private String archivoHtml(){
         //linux
-        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml"));
+        return new FileConverter().upLoadTextFile(new File(ruta_xml));
         //windows
         //return new FileConverter().upLoadTextFile(new File("D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml"));
     }
@@ -162,7 +170,7 @@ public class AppTest
     @Test
     public void reactionServerForServerResponse(){
         /*enviar solicitud de add mapa */
-        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        App.file = new FileConverter().addressExists(new File(ruta_xml_two));
         ReactionServer user = new ReactionServer(App.file, archivo());
         System.out.println(user.getResult());
         assertTrue(true);
@@ -181,7 +189,7 @@ public class AppTest
      */
     private String archivoText2(){
         //linux
-        return new FileConverter().upLoadTextFile(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        return new FileConverter().upLoadTextFile(new File(ruta_xml_two));
         //windows
         //return new FileConverter().upLoadTextFile(new File("D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json"));
     }
@@ -190,7 +198,7 @@ public class AppTest
      */
     @Test
     public void worldListRequest(){
-        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        App.file = new FileConverter().addressExists(new File(ruta_xml_two));
         ReactionServer user = new ReactionServer(App.file, "{\n"+"\"worlds\": \"all\"\n"+"}");
         System.out.println(user.getResult());
         assertTrue(true);
@@ -201,7 +209,7 @@ public class AppTest
      */
     @Test
     public void worldRequest(){
-        App.file = new FileConverter().addressExists(new File("/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml"));
+        App.file = new FileConverter().addressExists(new File(ruta_xml_two));
         ReactionServer user = new ReactionServer(App.file, "{\n"+"\"world\": \"tatoine\"\n"+"}");
         System.out.println(user.getResult());
         assertTrue(true);

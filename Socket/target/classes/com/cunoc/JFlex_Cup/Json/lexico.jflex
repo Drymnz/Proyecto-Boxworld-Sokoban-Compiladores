@@ -6,7 +6,6 @@ import java_cup.runtime.*;
 import java.util.List;
 import java.util.ArrayList;
 import com.cunoc.JFlex_Cup.Token;
-import com.cunoc.Server.Console;
 
 %%
 /*segunda seccion: configuracion*/
@@ -37,13 +36,13 @@ import com.cunoc.Server.Console;
         return this.listComments;
     };
 %}
-CARACTER = ([a-z]|"_")[a-zA-Z][a-zA-Z0-9]+
+CARACTER = ([a-zA-Z]|"_")[a-zA-Z][a-zA-Z0-9]*
 //STRING = "\""~"\""
-COLOR = ("#")[a-zA-Z0-9][a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?
+COLOR = ("#")[a-zA-Z0-9]([a-zA-Z0-9]?){6} 
 COMILLAS_DOBLE = "\"" 
 ENTERO =[0-9]+
-DECIMAL = {ENTERO}[.]{ENTERO}
-espacio =[\r|\t|\f|\n|\s| ]+
+espacio =[\n|\r|\t|\f|\b|\s| ]+
+no_pertenece = [~`&!@#$%_\[\]\{\}\|'\"<>\?\\.;\^]+
 %%
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
@@ -100,4 +99,4 @@ espacio =[\r|\t|\f|\n|\s| ]+
 {ENTERO}            {print("{NUMERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
 {COMILLAS_DOBLE}    {print("\"");return new Symbol(sym.COMILLAS,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/
-[^]                 { print("ERROR"); }
+[^]|{no_pertenece}             { print((yytext())); }

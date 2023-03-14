@@ -1,7 +1,6 @@
 package com.cunoc.Server;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
@@ -83,7 +82,6 @@ public class ReactionServer {
                         }else{
                             //error
                         }
-                        
                     }else {
                         this.result = "Esta repetido";
                     }
@@ -104,7 +102,7 @@ public class ReactionServer {
                         }
                     }
                     if (match == null) {
-
+                        this.result = "no existe el map";
                     } else {
                         this.result = (new MapToString(match)).formatXML();
                     }

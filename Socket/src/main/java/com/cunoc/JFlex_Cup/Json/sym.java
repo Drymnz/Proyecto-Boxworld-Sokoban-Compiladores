@@ -14,12 +14,12 @@ public class sym {
   public static final int WORLDS = 36;
   public static final int DOBLE_PUNTO = 20;
   public static final int L_CIERRE = 30;
-  public static final int ENTERO = 39;
+  public static final int ENTERO = 38;
   public static final int TARGETS = 16;
   public static final int SUMAR = 23;
   public static final int BOX_COLOR = 6;
   public static final int ROWS = 3;
-  public static final int CARACTER = 40;
+  public static final int CARACTER = 39;
   public static final int TYPE = 13;
   public static final int BOARD = 14;
   public static final int C_CIERRE = 32;
@@ -31,12 +31,11 @@ public class sym {
   public static final int BRICK = 34;
   public static final int PLAYER = 17;
   public static final int COMILLAS = 21;
-  public static final int SYM = 38;
   public static final int error = 1;
   public static final int COMA = 22;
   public static final int WORLD = 37;
   public static final int NAME = 2;
-  public static final int COLOR = 41;
+  public static final int COLOR = 40;
   public static final int POSY = 18;
   public static final int POSX = 19;
   public static final int COLS = 4;
@@ -89,7 +88,6 @@ public class sym {
   "ALL",
   "WORLDS",
   "WORLD",
-  "SYM",
   "ENTERO",
   "CARACTER",
   "COLOR"

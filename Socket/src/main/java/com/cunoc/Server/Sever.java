@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.cunoc.App;
+
 public class Sever extends Thread {
     private final int port;
     private final String NADA = "error";
@@ -39,14 +41,9 @@ public class Sever extends Thread {
     private String interprets(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            return text;
+            return (new ReactionServer(App.file,text)).getResult();
         }
         return NADA;
-    }
-
-    private Object reaction(String analyze){
-
-        return null;
     }
 
     public Sever(int port) {

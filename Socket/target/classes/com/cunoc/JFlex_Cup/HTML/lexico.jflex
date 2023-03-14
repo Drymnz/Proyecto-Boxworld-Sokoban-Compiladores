@@ -27,10 +27,10 @@ import com.cunoc.Server.Console;
         this.report = repor;
     }
 %}
-CARACTER = ([a-z]|"_")[a-zA-Z][a-zA-Z0-9]+
+CARACTER = ([a-zA-Z]|"_")[a-zA-Z][a-zA-Z0-9]*
 ENTERO = [0-9]+
-COLOR = ("#")[a-zA-Z0-9][a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?
-espacio =[\n | \r | \t | \f | \b]+
+COLOR = ("#")[a-zA-Z0-9]([a-zA-Z0-9]?){6} 
+espacio =[\n|\r|\t|\f|\b|\s| ]+
 %%
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
@@ -91,4 +91,4 @@ espacio =[\n | \r | \t | \f | \b]+
 {ENTERO}            {print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
 {COLOR}             {print("COLOR" );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/
-[^]                 { print("ERROR"); }
+[^]                { print("ERROR"); }
