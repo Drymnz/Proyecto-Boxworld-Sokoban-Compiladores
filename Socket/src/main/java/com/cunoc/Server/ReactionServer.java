@@ -66,24 +66,20 @@ public class ReactionServer {
                 case ADD_WORD:// add word data base
                     SicJSonToMap pep = new SicJSonToMap(sic);
                     Map t4en = pep.getMap();
-                    Boolean notRepeated = (dataBaseSic.getListMap().isEmpty())? true : false;
-                    for (Map iterable_element : dataBaseSic.getListMap()) {
-                        if (iterable_element.getName().equals(t4en.getName())) {
-                            notRepeated = false;
+                    Boolean notRepeated =  false;
+                    if (dataBaseSic.getListMap().isEmpty()) {
+                        addWord(dataBaseSic,t4en);
+                    }else{
+                        for (Map iterable_element : dataBaseSic.getListMap()) {
+                            if (iterable_element.getName().equals(t4en.getName())) {
+                                notRepeated = true;
+                                this.result = "Esta repetido";
+                                break;
+                            }
                         }
-                    }
-                    if (notRepeated) {// unique id
-                        dataBaseSic.getListMap().add(t4en);// add map
-                        FileWriteManager writerFila = new FileWriteManager();
-                        String returnServer =  (new ArrayListMapToString(dataBaseSic.getListMap())).getResultFormatXML();
-                        if (writerFila.waitText(App.file,returnServer)) {
-                            //yes write
-                            this.result = returnServer; 
-                        }else{
-                            //error
+                        if (!notRepeated) {
+                            addWord(dataBaseSic,t4en);
                         }
-                    }else {
-                        this.result = "Esta repetido";
                     }
                     break;
                 case ALL_WORDS:// get list name words
@@ -112,6 +108,18 @@ public class ReactionServer {
             }
         }
 
+    }
+
+    private void addWord(SicHTML dataBaseSic,Map t4en){
+        dataBaseSic.getListMap().add(t4en);// add map
+        FileWriteManager writerFila = new FileWriteManager();
+        String returnServer =  (new ArrayListMapToString(dataBaseSic.getListMap())).getResultFormatXML();
+        if (writerFila.waitText(App.file,returnServer)) {
+            //yes write
+            this.result = (new MapToString(t4en)).formatXML(); 
+        }else{
+            //error
+        }
     }
 
     public String getResult() {

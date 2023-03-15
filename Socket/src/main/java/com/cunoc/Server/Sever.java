@@ -1,7 +1,9 @@
 package com.cunoc.Server;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -13,29 +15,29 @@ public class Sever extends Thread {
 
     @Override
     public void run() {
-        int attempts = 0;
-        while (attempts < 10) {
-            try {
-                ServerSocket severt = new ServerSocket(this.port);
+        try(ServerSocket server = new ServerSocket(this.port)) {
+            while (true) {
+                String hostAddress = InetAddress.getLocalHost().getHostAddress();
                 Console.ConsoleText.append("\nEl servidor esta corriendo en el puerto : " + this.port);
+                //modo espera
                 Console.ConsoleText.append("\nEstoy a la espera");
-                Socket socketClient = severt.accept();
-                Console.ConsoleText.append("\nse conecto alguien");
-                ObjectInputStream in = new ObjectInputStream(socketClient.getInputStream());
-                ObjectOutputStream out = new ObjectOutputStream(socketClient.getOutputStream());
+                Socket socket = server.accept();
+
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                 Object getCliente = in.readObject();
                 String json = interprets(getCliente);
                  /*analysis process */
                 out.writeObject(json);
                 Console.ConsoleText.append("\nle envie esto:\n" + json);
-                socketClient.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                attempts++;
-                Console.ConsoleText.append("\nERROR-> class:SERVER " + e.getMessage());
+                // TODO: read message
+                out.writeObject(json);
             }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace(System.out);
+            Console.ConsoleText.append(e.getMessage());
+            Console.ConsoleText.append("\nERROR-> class:SERVER " + e.getMessage());
         }
-        // System.exit(0);
     }
 
     private String interprets(Object get) {
