@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.boxworld_sokoban.juego.JflexYCup.xml.LexicoXML
@@ -13,18 +14,19 @@ import com.example.boxworld_sokoban.juego.JflexYCup.xml.SicXML
 import com.example.boxworld_sokoban.juego.Juego
 import com.example.boxworld_sokoban.juego.SicXMLToMap
 import com.example.boxworld_sokoban.juego.server.Connection
-import java.io.File
+import com.example.boxworld_sokoban.juego.server.message.SimpleMessage
+import com.example.boxworld_sokoban.juego.server.task.AsyncResponse
+import com.example.boxworld_sokoban.juego.server.task.MyTask
 import java.io.Reader
 import java.io.StringReader
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AsyncResponse {
 
-    val PORT = 8086//socket connection port
+
     val prueva_two:String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
             "<worlds>\n" +
             "\t<world>\n" +
             "\t\t<name>tatoine</name>\n" +
-            "\t\t<name>tatoine</name><name>tatoine</name><name>tatoine</name>\n" +
             "\t\t<rows>10</rows>\n" +
             "\t\t<cols>10</cols>\n" +
             "\t\t<config>\n" +
@@ -290,6 +292,11 @@ class MainActivity : AppCompatActivity() {
             "\t</world>\n" +
             "</worlds>\n"
 
+    // TODO: make the ip dynamic
+    val ipServer: String = "192.168.10.130"
+    val portServer: Int = 8086//socket connection port
+    var textView: TextView? = null;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -299,23 +306,22 @@ class MainActivity : AppCompatActivity() {
     fun analyze(view:View){
         //send text socket
         val textsend:AutoCompleteTextView = findViewById(R.id.textSendSocket)
-        Log.d("enviar",textsend.text.toString())
+        //Log.d("enviar",textsend.text.toString())
         //socket
-        val server:Connection = Connection(this.PORT,findViewById(R.id.BotonCompiladorActivity),textsend.getText().toString())
         Toast.makeText(this,"Fue enviado la solicitu al server",Toast.LENGTH_SHORT)
         Log.d("enviado","enviado")
-        server.sendJSon()
+        sendMessage(textsend.text.toString())
         //
         val sic: SicXML? = analyze(prueva_two)
         //decision, *************** put a switch ***************
         // go game
-        if (sic != null && sic.isMap) {
-                irJuego(sic)
-        }
-        else{
+        //if (sic != null && sic.isMap) {
+                //irJuego(sic)
+        //}
+        //else{
             // go error
             // show list
-        }
+        //}
     }
     fun analyze(text:String):SicXML?{
         val reader: Reader = StringReader(text)
@@ -329,6 +335,20 @@ class MainActivity : AppCompatActivity() {
             return null
         }
         return null
+    }
+
+    override fun processResponse(output: String?) {
+        if (output != null) {
+            textView?.text = output
+            Log.d("formin",output)
+        } else {
+            textView?.text = "Something went wrong"
+        }
+    }
+    private fun sendMessage(message: String) {
+        val task = MyTask(ipServer, portServer, message)
+        task.delegate = this
+        task.execute()
     }
     /**go game
      * */

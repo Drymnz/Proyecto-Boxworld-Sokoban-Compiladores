@@ -1,34 +1,29 @@
 package com.example.boxworld_sokoban.juego.server
 
-import android.widget.Button
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
-import java.net.InetAddress
 import java.net.Socket
 
 
-class Connection(port:Int,button:Button,textJson:String) {
+class Connection(port:Int,textJson:String,severIp:String) {
 
     private val port:Int
-    private val button:Button
     private val textJson:String
-    private val SERVER_IP = "10.0.2.2"
+    private val SERVER_IP:String
 
     init{
         this.port = port
-        this.button = button
         this.textJson = textJson
+        this.SERVER_IP = severIp
     }
 
     public fun sendJSon():String{
-        //button.setEnabled(false)
-        var result: String? = ""
+        var result: String = ""
         try {
-            val serverAddr: InetAddress = InetAddress.getByName(SERVER_IP)
-            val socket = Socket(serverAddr, port)
+            val socket = Socket("localhost", this.port)
             val send = ObjectOutputStream(socket.getOutputStream())
             val in2 = ObjectInputStream(socket.getInputStream())
-            send.writeObject(textJson)
+            send.writeObject(this.sendJSon())
             val resivido = in2.readObject() as String
             result = resivido
             send.close()
@@ -37,7 +32,6 @@ class Connection(port:Int,button:Button,textJson:String) {
         } catch (e: Exception) {
             println("NO SE CONNECTO AL ASERVER")
         }
-        return result!!
-        this.button.setEnabled(true)
+        return result
     }
 }
