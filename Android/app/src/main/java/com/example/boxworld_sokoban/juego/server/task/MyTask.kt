@@ -9,19 +9,27 @@ import java.net.Socket
 class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Void, Void, String>() {
 
     var delegate: AsyncResponse? = null
+    var request:Boolean = false
 
     override fun doInBackground(vararg p0: Void?): String {
-        val socket = Socket(ip, port)
-        val outputStream = ObjectOutputStream(socket.getOutputStream())
-        val inputStream = ObjectInputStream(socket.getInputStream())
+        try {
+            val socket = Socket(ip, port)
+            val outputStream = ObjectOutputStream(socket.getOutputStream())
+            val inputStream = ObjectInputStream(socket.getInputStream())
 
-        // sending message
-        outputStream.writeObject(message)
+            // sending message
+            outputStream.writeObject(message)
 
-        // receiving message
-        val response: String = inputStream.readObject() as String;
-        // showing message
-        return response.toString()
+            // receiving message
+            val response: String = inputStream.readObject() as String;
+            // showing message
+            request = true
+            return response.toString()
+        }catch (e: Exception) {
+            request = false
+            System.out.println("Ip incorrecta")
+            return ""
+        }
     }
 
     override fun onPostExecute(result: String?) {
