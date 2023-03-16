@@ -24,7 +24,7 @@ public class Sever extends Thread {
             // String hostAddress = InetAddress.getLocalHost().getHostAddress();
             while (true) {
                 Console.ConsoleText.append("\nEl servidor esta corriendo en el puerto : " + server.getLocalPort());
-                printConsole();
+                printConsole();//view ip
                 // modo espera
                 Console.ConsoleText.append("\nEstoy a la espera");
                 Socket socket = server.accept();
@@ -52,9 +52,9 @@ public class Sever extends Thread {
             Enumeration ee = n.getInetAddresses();
             while (ee.hasMoreElements()) {
                 InetAddress i = (InetAddress) ee.nextElement();
-                Pattern patron = Pattern.compile("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$");
-                Matcher verificar = patron.matcher(i.getHostAddress());
-                if (verificar.find()) {
+                Pattern pattern = Pattern.compile("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$");
+                Matcher verify = pattern.matcher(i.getHostAddress());
+                if (verify.find()) {
                     Console.ConsoleText.append("\n: Posible ip para : "+ i.getHostAddress());
                 }
             }

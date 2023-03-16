@@ -9,7 +9,6 @@ import java.net.Socket
 class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Void, Void, String>() {
 
     var delegate: AsyncResponse? = null
-    var request:Boolean = false
 
     override fun doInBackground(vararg p0: Void?): String {
         try {
@@ -23,10 +22,8 @@ class MyTask(val ip: String, val port: Int, val message: String) : AsyncTask<Voi
             // receiving message
             val response: String = inputStream.readObject() as String;
             // showing message
-            request = true
             return response.toString()
         }catch (e: Exception) {
-            request = false
             System.out.println("Ip incorrecta")
             return ""
         }

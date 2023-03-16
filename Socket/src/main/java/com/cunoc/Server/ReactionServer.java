@@ -116,7 +116,9 @@ public class ReactionServer {
         String returnServer =  (new ArrayListMapToString(dataBaseSic.getListMap())).getResultFormatXML();
         if (writerFila.waitText(App.file,returnServer)) {
             //yes write
-            this.result = (new MapToString(t4en)).formatXML(); 
+            this.result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<worlds>\n";
+            this.result += (new MapToString(t4en)).formatXML(); 
+            this.result += "\n</worlds>";
         }else{
             //error
         }

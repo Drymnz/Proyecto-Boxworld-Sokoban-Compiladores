@@ -32,15 +32,19 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         setContentView(R.layout.activity_main)
     }
 
+    /**
+     * run button execution
+     * */
     fun analyze(view:View){
         //send text socket
         val textsend:AutoCompleteTextView = findViewById(R.id.textSendSocket)
         //socket
-        Log.d("enviado","se envia la solicitud")//status
         findViewById<Button>(R.id.BotonCompiladorActivity).setEnabled(false)//diseble button
-        sendMessage(textsend.text.toString())//send
+        Log.d("enviado","se envia la solicitud")//status
+        sendMessage(textsend.text.toString())//send text
     }
     fun analyze(text:String):SicXML?{
+        findViewById<Button>(R.id.BotonCompiladorActivity).setEnabled(true)//diseble button
         val reader: Reader = StringReader(text)
         val Lexico = LexicoXML(reader)
         val sic = SicXML(Lexico)
@@ -55,7 +59,6 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
     }
 
     override fun processResponse(output: String?) {
-        findViewById<Button>(R.id.BotonCompiladorActivity).setEnabled(true)
         if (output != null && !output.isEmpty()) {
             val sic: SicXML? = analyze(output)
             //decision, *************** put a switch ***************
@@ -63,25 +66,28 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
             if (sic != null && sic.isMap) {
                 irJuego(sic)
             }
-            //else{
+            else{
             // go error
             // show list
-            //}
+            }
         } else {
             Toast.makeText(this, "Ip incorrecta",Toast.LENGTH_LONG)
         }
     }
+    /**
+     * send String to severt
+     * */
     private fun sendMessage(message: String) {
         val task = MyTask(getIpServert(), portServer, message)//create the object
         task.delegate = this
         task.execute()
-        if (!task.request){
-            Log.d("MainActivity","Ip incorrecta")
-            Toast.makeText(this, "Ip incorrecta",Toast.LENGTH_LONG)
-        }
     }
+    /**
+     * return ip entered
+     * */
     private fun getIpServert():String {
-        val text:String = findViewById<EditText>(R.id.ipServer).text.toString()
+        val text:String = findViewById<EditText>(R.id.ipServer).text.toString().replace("\\s".toRegex(), "")
+        Log.d("IP SERVER",text)
         if (!text.isEmpty()){
             return text
         }
