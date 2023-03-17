@@ -151,15 +151,16 @@ public class parser extends java_cup.runtime.lr_parser {
             private ArrayList<ListMovePlay> listMove = new ArrayList<>();
             private ListMovePlay tipoMovimiento;
             private int contador;
+            private int errorCounter;
 
             public ArrayList<ListMovePlay> getListMoveGame(){
                 return this.listMove;
             }
 
-        public void syntax_error(Symbol cur_token) {
-        //System.out.println("El error es el simbolo: " + sym.terminalNames[cur_token.sym]);
-        //System.out.println(String.format("En la posicion: %d, %d", cur_token.left, cur_token.right));
-        }
+    public void syntax_error(Symbol cur_token) {
+        errorCounter++;
+        System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
+    }
 
         public void unrecovered_syntax_error(Symbol cur_token) {
             if (cur_token.sym == sym.EOF) {
