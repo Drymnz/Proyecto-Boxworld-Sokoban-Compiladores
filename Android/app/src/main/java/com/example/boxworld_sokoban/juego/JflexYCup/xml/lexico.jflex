@@ -2,6 +2,11 @@
 package com.example.boxworld_sokoban.juego.JflexYCup.xml;
 
 import java_cup.runtime.*;
+import com.example.boxworld_sokoban.juego.JflexYCup.Token;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 %%
 /*segunda seccion: configuracion*/
@@ -12,8 +17,14 @@ import java_cup.runtime.*;
 %cup
 %public
 %{
-    private String report = "";
-
+    private  List<Token> listComments =  new ArrayList<>();
+        private String report = "";
+        private void addComments(){
+            listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
+        }
+        public List<Token> getListError(){
+            return listComments;
+        }
     private void print(String token){
         //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
@@ -28,6 +39,7 @@ CARACTER = ([a-z]|"_")[a-zA-Z][a-zA-Z0-9]+
 ENTERO = [0-9]+
 COLOR = ("#")[a-zA-Z0-9][a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?[a-zA-Z0-9]?
 espacio =[\n | \r | \t | \f | \b]+
+no_pertenece = ("~"|"`"|"&"|"!"|"@"|"#"|"$"|"%"|"_"|"\\"|"<"|">"|"\?"|"."|";"|"^")+
 %%
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
@@ -92,4 +104,4 @@ espacio =[\n | \r | \t | \f | \b]+
 {ENTERO}            {print("{ENTERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
 {COLOR}             {print(yytext() );return new Symbol(sym.COLOR,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/
-[^]                 { print("ERROR"); }
+[^]|{no_pertenece}             { addComments(); }

@@ -21,9 +21,12 @@ import com.cunoc.JFlex_Cup.Token;
     private void addComments(){
         listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
     }
+    public List<Token> getListError(){
+        return listComments;
+    }
     private void print(String token){
-        //Console.ConsoleText.append("\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">");
-        //report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
+        //System.out.print(token);
+        report+="\n<linea:"+(yyline+1)+"><colum:"+(yycolumn+1)+"><TOKEN:"+yytext()+">";
     }
     public String getReport(){
         return this.report;
@@ -42,7 +45,7 @@ COLOR = ("#")[a-zA-Z0-9]([a-zA-Z0-9]?){6}
 COMILLAS_DOBLE = "\"" 
 ENTERO =[0-9]+
 espacio =[\n|\r|\t|\f|\b|\s| ]+
-no_pertenece = [~`&!@#$%_\[\]\{\}\|'\"<>\?\\.;\^]+
+no_pertenece = ("~"|"`"|"&"|"!"|"@"|"#"|"$"|"%"|"_"|"\\"|"<"|">"|"\?"|"."|";"|"^")+
 %%
 /*tercer seccion: reglase lexicas*/
 /*INGNORAR*/
@@ -99,4 +102,4 @@ no_pertenece = [~`&!@#$%_\[\]\{\}\|'\"<>\?\\.;\^]+
 {ENTERO}            {print("{NUMERO}" );return new Symbol(sym.ENTERO,yyline,yycolumn, (yytext())); }
 {COMILLAS_DOBLE}    {print("\"");return new Symbol(sym.COMILLAS,yyline,yycolumn, (yytext())); }
 /*ERROR LEXICO*/
-[^]|{no_pertenece}             { print((yytext())); }
+[^]|{no_pertenece}             { addComments(); }

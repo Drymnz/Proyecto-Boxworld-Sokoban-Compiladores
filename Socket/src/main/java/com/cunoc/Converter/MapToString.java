@@ -17,21 +17,23 @@ public class MapToString {
     }
 
     private void converter() {
-        this.resultFianal = "\t<world>\n";
-        this.resultFianal += this.waxSimple(this.converter.getName(), "name");
-        this.resultFianal += this.waxSimple(this.converter.getRows() + "", "rows");
-        this.resultFianal += this.waxSimple(this.converter.getCols() + "", "cols");
-        this.resultFianal += "\t\t<config>\n";
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBOX_COLOR(), "box_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBOX_ON_COLOR(), "box_on_target_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getTARGET_COLOR(), "target_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBRICK_COLOR(), "brick_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getHALL_COLOR(), "hall_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getUNDEFINED_COLOR(), "undefined_color");
-        this.resultFianal += "\t\t"+this.waxSimple(this.converter.getPLAY_COLOR(), "player_color");
-        this.resultFianal += "\t\t</config>";
-        this.resultFianal += this.listSquare();
-        this.resultFianal += "\n\t</world>";
+        if (converter!=null) {
+            this.resultFianal = "\t<world>\n";
+            this.resultFianal += this.waxSimple(this.converter.getName(), "name");
+            this.resultFianal += this.waxSimple(this.converter.getRows() + "", "rows");
+            this.resultFianal += this.waxSimple(this.converter.getCols() + "", "cols");
+            this.resultFianal += "\t\t<config>\n";
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBOX_COLOR(), "box_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBOX_ON_COLOR(), "box_on_target_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getTARGET_COLOR(), "target_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getBRICK_COLOR(), "brick_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getHALL_COLOR(), "hall_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getUNDEFINED_COLOR(), "undefined_color");
+            this.resultFianal += "\t\t"+this.waxSimple(this.converter.getPLAY_COLOR(), "player_color");
+            this.resultFianal += "\t\t</config>";
+            this.resultFianal += this.listSquare();
+            this.resultFianal += "\n\t</world>";
+        }
     }
 
     private String waxSimple(String between, String sides) {

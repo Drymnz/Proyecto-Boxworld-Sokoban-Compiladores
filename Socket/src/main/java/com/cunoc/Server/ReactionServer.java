@@ -10,6 +10,7 @@ import com.cunoc.Converter.MapToString;
 import com.cunoc.Converter.SicJSonToMap;
 import com.cunoc.File_Manger.FileConverter;
 import com.cunoc.File_Manger.FileWriteManager;
+import com.cunoc.JFlex_Cup.ReportError;
 import com.cunoc.JFlex_Cup.HTML.LexicoHTML;
 import com.cunoc.JFlex_Cup.HTML.SicHTML;
 import com.cunoc.JFlex_Cup.Json.LexicoJson;
@@ -38,14 +39,20 @@ public class ReactionServer {
         } catch (Exception e) {
             Console.ConsoleText.append("\nError al analizar");
         }
-        realizar(sic);
+        ReportError isNull = new ReportError(lexema, sic);
+        if (isNull.getResul().isEmpty()) {
+            realizar(sic);
+        }else{
+            Console.ConsoleText.append(isNull.getResul());
+            this.result=isNull.getFormatXML();
+        }
     }
 
     private void realizar(SicJSon sic) {
         if (sic.getReaction() == ListReactionServer.ERROR) {
 
         } else {// if there is a request to make
-            if (dataBase == null || !dataBase.exists()) {
+            if (dataBase == null) {
                 dataBase = (new FileConverter()).addressExists(dataBase);
             }
             String listWords = new FileConverter().upLoadTextFile(dataBase);// get data base

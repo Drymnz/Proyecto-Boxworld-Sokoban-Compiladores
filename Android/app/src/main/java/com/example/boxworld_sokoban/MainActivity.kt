@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
     }
 
     override fun processResponse(output: String?) {
+        findViewById<Button>(R.id.BotonCompiladorActivity).setEnabled(true)//diseble button
         if (output != null && !output.isEmpty()) {
             val sic: SicXML? = analyze(output)
             //decision, *************** put a switch ***************
@@ -69,9 +70,10 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
             else{
             // go error
             // show list
+                findViewById<AutoCompleteTextView>(R.id.textSendSocket).setText(output)
             }
         } else {
-            Toast.makeText(this, "Ip incorrecta",Toast.LENGTH_LONG)
+            Toast.makeText(this, "Un error",Toast.LENGTH_LONG)
         }
     }
     /**

@@ -1,0 +1,5 @@
+package com.cunoc.JFlex_Cup.Json;
+
+public enum ListError {
+    EMPTY,NO_REQUEST,INCORRECT_ATTRIBUTE,POSITION,TYPO_BLOCK,INDETERMINATION,LLAVES;
+}

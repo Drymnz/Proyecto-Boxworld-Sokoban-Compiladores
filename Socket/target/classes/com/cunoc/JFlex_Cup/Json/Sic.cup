@@ -31,12 +31,22 @@ import com.cunoc.Server.ListReactionServer;
         private ArrayList<Square> listSquare = new ArrayList();
         //ReactionServer
         private ListReactionServer reaction = ListReactionServer.ERROR;
+        private ArrayList<ErroSic> listError   = new ArrayList();
+
+    private void addError(ListError error){
+      listError.add(new ErroSic((cur_token.left+1), (cur_token.right+1), sym.terminalNames[cur_token.sym], error));
+    }
+
+    public ArrayList<ErroSic> getListError(){
+      return listError;
+    }
 
     SicJSon(LexicoJson lexico){
         super(lexico);
     }
     public void syntax_error(Symbol cur_token) {
         errorCounter++;
+        addError(ListError.EMPTY);
         System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
     }
     public Symbol getSymbol(){
@@ -164,7 +174,7 @@ start with inicio;
 inicio ::= L_APERTURA accion L_CIERRE {:
 //prinFinal();
 :}
-|
+|error {:addError(ListError.EMPTY);:}
 ;
 
 accion ::=
@@ -176,6 +186,7 @@ accion ::=
       System.out.println("ya tiene un nombre");
     }:}
     |{:reaction = ListReactionServer.ADD_WORD;:}crear_mundo
+    |{:addError(ListError.EMPTY);:}
     ;   
 /*****************CREAR MUNDO*************************/
 crear_mundo ::=
@@ -215,11 +226,13 @@ atributos ::=
     |{:typeSquare = ListSquare.TARGET;:} TARGETS DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
     |{:typeSquare = ListSquare.PLAY;:} PLAYER DOBLE_PUNTO L_APERTURA solo_poss L_CIERRE {:addSquare();:}
     |{:typeSquare = ListSquare.BOX;:} BOXES  DOBLE_PUNTO C_APERTURA varios_bloques C_CIERRE 
+    |error {:addError(ListError.INCORRECT_ATTRIBUTE);:}
     ;
 /*****************posicion*************************/
 seleccion_poss ::= 
     seleccion_poss COMA  pos_agrupar  
     | pos_agrupar 
+    |error {:addError(ListError.POSITION);:}
     ;
 pos_agrupar ::= L_APERTURA atributos_poss L_CIERRE {:addSquare();:};
 
@@ -246,6 +259,7 @@ typo_poss ::=
 tipo_board ::=
     {:typeSquare = ListSquare.HALL;:} HALL 
     |{:typeSquare = ListSquare.BRICK;:} BRICK  
+    |error {:addError(ListError.TYPO_BLOCK);:}
     ;
 entre_comillas_numero ::=
     COMILLAS j COMILLAS 
@@ -293,8 +307,15 @@ o ::= o:a SUMAR o:b {:
 |  o:a DIVIDIR o:b {:
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
-                    double resultado = numeroUno/numeroDos;
+                    if(numeroDos != 0){
+double resultado = numeroUno/numeroDos;
                     RESULT = String.valueOf(resultado);
+                  
+                    }else{
+addError(ListError.INDETERMINATION);
+RESULT = "0";
+                    }
+                    
                     :}
 
 |  o:a MULTIPLICAR o:b {:

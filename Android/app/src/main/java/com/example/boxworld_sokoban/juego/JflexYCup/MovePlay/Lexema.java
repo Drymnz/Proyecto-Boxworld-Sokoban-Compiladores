@@ -6,6 +6,11 @@
 
 package com.example.boxworld_sokoban.juego.JflexYCup.MovePlay;
 import java_cup.runtime.*;
+import com.example.boxworld_sokoban.juego.JflexYCup.Token;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 // See https://github.com/jflex-de/jflex/issues/222
@@ -295,6 +300,14 @@ public class Lexema implements java_cup.runtime.Scanner {
 
   /* user code: */
     /*CODE*/
+        private  List<Token> listComments =  new ArrayList<>();
+            private String report = "";
+            private void addComments(){
+                listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
+            }
+            public List<Token> getListError(){
+                return listComments;
+            }
         public void print() {
             //System.out.println("\n<" + yytext() + "><Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + yycolumn + "\">");
         }

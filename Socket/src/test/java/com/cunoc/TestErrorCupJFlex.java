@@ -9,24 +9,15 @@ import java.io.StringReader;
 import org.junit.Test;
 
 import com.cunoc.File_Manger.FileConverter;
+import com.cunoc.JFlex_Cup.ReportError;
 import com.cunoc.JFlex_Cup.HTML.LexicoHTML;
 import com.cunoc.JFlex_Cup.HTML.SicHTML;
 import com.cunoc.JFlex_Cup.Json.LexicoJson;
 import com.cunoc.JFlex_Cup.Json.SicJSon;
-import com.cunoc.Server.ReactionServer;
 
 public class TestErrorCupJFlex {
 
-     private String ruta_json = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
-    //private String ruta_json = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
-
-     private String ruta_xml = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
-    //private String ruta_xml = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
-
-    private String ruta_xml_two = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
-    //private String ruta_xml_two = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
-
-    private String ruta_json_error = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_error.json";
+    private String ruta_json_error = "/home/drymnz/dowgit/Proyecto-Boxworld-Sokoban-Compiladores/Socket/src/test/java/com/cunoc/test_error.json";
     //private String ruta_json_error = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_error.json";
 
 
@@ -69,13 +60,15 @@ public class TestErrorCupJFlex {
         SicJSon sic = new SicJSon(lexema);
         try {
             sic.parse();
-            System.out.println(lexema.getReport());
+            //System.out.println(lexema.getReport());
         } catch (Exception e) {
             return false;
             /* Symbol s = sic.getSymbol();
             e.printStackTrace();
             System.out.println(e.getMessage()); */
         } 
+        ReportError verificacion = new ReportError(lexema,sic);
+        System.out.println(verificacion.getResul());
         return true;
     }
     private boolean lexicoSicHTML(String prueva){

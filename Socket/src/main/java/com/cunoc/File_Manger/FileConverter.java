@@ -33,7 +33,7 @@ public class FileConverter {
     }
 
     public File addressExists(File check) {
-        if (check.exists()) {
+        if (check!=null) {
             return check;
         } else {
             try {
@@ -45,6 +45,7 @@ public class FileConverter {
                 }
             } catch (Exception e) {
                e.printStackTrace();
+               System.out.println("NO SE PUDO CREAR " + check.getName());
             }
         }
         return null;

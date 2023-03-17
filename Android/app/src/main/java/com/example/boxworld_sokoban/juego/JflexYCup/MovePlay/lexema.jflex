@@ -2,6 +2,11 @@
 
 package com.example.boxworld_sokoban.juego.JflexYCup.MovePlay;
 import java_cup.runtime.*;
+import com.example.boxworld_sokoban.juego.JflexYCup.Token;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 %%
 /*segunda seccion: configuracion*/
@@ -14,6 +19,14 @@ import java_cup.runtime.*;
 %public
 %{
     /*CODE*/
+        private  List<Token> listComments =  new ArrayList<>();
+            private String report = "";
+            private void addComments(){
+                listComments.add(new Token((yyline+1),(yycolumn+1),yytext()));
+            }
+            public List<Token> getListError(){
+                return listComments;
+            }
         public void print() {
             //System.out.println("\n<" + yytext() + "><Linea\"" + (yyline + 1) + "\">" + "<Columna\"" + yycolumn + "\">");
         }
@@ -22,6 +35,7 @@ import java_cup.runtime.*;
 ENTERO =[0-9]+
 DECIMAL = {ENTERO}[.]{ENTERO}
 espacio =[\r|\t|\f|\n|\s| ]+
+no_pertenece = ("~"|"`"|"&"|"!"|"@"|"#"|"$"|"%"|"_"|"\\"|"<"|">"|"\?"|"."|"^")+
 %%
 
 /*tercer seccion: reglase lexicas*/

@@ -64,7 +64,11 @@ public class Sever extends Thread {
     private String interprets(Object get) {
         if (get instanceof String) {
             String text = (String) get;
-            return (new ReactionServer(App.file, text)).getResult();
+            if (text.isEmpty()) {
+                return "";
+            }else{
+                return (new ReactionServer(App.file, text)).getResult();
+            }
         }
         return NADA;
     }

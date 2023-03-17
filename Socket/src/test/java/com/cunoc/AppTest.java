@@ -23,14 +23,14 @@ import com.cunoc.JFlex_Cup.Json.SicJSon;
  */
 public class AppTest 
 {
-    private String ruta_json = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
+    private String ruta_json = "/home/drymnz/dowgit/Proyecto-Boxworld-Sokoban-Compiladores/Socket/src/test/java/com/cunoc/test.json";
     //private String ruta_json = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.json";
 
-    private String ruta_xml = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
+    private String ruta_xml = "/home/drymnz/dowgit/Proyecto-Boxworld-Sokoban-Compiladores/Socket/src/test/java/com/cunoc/test.xml";
     //private String ruta_xml = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test.xml";
 
 
-     private String ruta_xml_two = "/mnt/Archivo/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
+     private String ruta_xml_two = "/home/drymnz/dowgit/Proyecto-Boxworld-Sokoban-Compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
      //private String ruta_xml_two = "D:/Mis documentos/Proyect/Proyecto compiladores/Socket/src/test/java/com/cunoc/test_two.xml";
 
      
@@ -80,7 +80,7 @@ public class AppTest
         SicJSon sic = new SicJSon(lexema);
         try {
             sic.parse();
-            System.out.println(lexema.getReport());
+            //System.out.println(lexema.getReport());
         } catch (Exception e) {
             return false;
             /* Symbol s = sic.getSymbol();
@@ -198,7 +198,7 @@ public class AppTest
      */
     @Test
     public void worldListRequest(){
-        App.file = new FileConverter().addressExists(new File(ruta_xml_two));
+        App.file = new FileConverter().addressExists(new File(App.DATA_BASE));
         ReactionServer user = new ReactionServer(App.file, "{\n"+"\"worlds\": \"all\"\n"+"}");
         System.out.println(user.getResult());
         assertTrue(true);
@@ -209,7 +209,7 @@ public class AppTest
      */
     @Test
     public void worldRequest(){
-        App.file = new FileConverter().addressExists(new File(ruta_xml_two));
+        App.file = new FileConverter().addressExists(new File(App.DATA_BASE));
         ReactionServer user = new ReactionServer(App.file, "{\n"+"\"world\": \"tatoine\"\n"+"}");
         System.out.println(user.getResult());
         assertTrue(true);
