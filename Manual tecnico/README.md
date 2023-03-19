@@ -1,5 +1,5 @@
 # Proyecto-Boxworld-Sokoban-Compiladores
-El sistema está desarrollado bajo kotlin en para parte de android y en el socket está por java. La aplicación móvil se conecta con el socket mediante un puerto indicado previamente a la compilación del jar también antes de la instalación de la aplicación kotlin.
+El sistema está desarrollado bajo kotlin en para la parte de android y en el socket está por java. La aplicación móvil se conecta con el socket mediante un puerto indicado previamente a la compilación del jar también antes de la instalación de la aplicación kotlin.
 
 <img src='/recursos-git/01_1366x768_scrot.png'>
 
@@ -177,8 +177,22 @@ El servidor al arrancar siempre estará en espera de las llamadas, y recibirá u
     ```
 ### Ejecucion del socket
 
-## Aplicacion mobil Android (kotlin)
+Se ejecuta el JAR producciodo compilado por el codigo que esta en la carpeta Socket. se arranca el JAR con el siguiente comando
 
-La parte de android esta se compila para el uso de un app y se instala de forma de aplicación de terceros.
+    ```bash
 
-### Ejecucion del socket
+    java -jar Proyecto-Boxworld-Sokoban-Compiladores.jar
+
+    ```
+Después que fue exitoso la ejecución del JAR, se mostrar lo siguiente.
+
+### Ejecucion del App
+
+La aplicación se contrae en las Android Studio o obtener el app en la siguiente ruta.
+
+    ```bash
+
+    Proyecto-Boxworld-Sokoban-Compiladores/Android/app/release
+
+    ```
+Después de instalar la aplicación móvil con el .APK como fuentes desconocidas, ya se puede iniciar la aplicación móvil.

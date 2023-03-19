@@ -159,9 +159,11 @@ inicio ::= mundo_erro;
 mundo_erro ::=
     {:map = true ; :}INICIO_WORLDS accion FINAL_WORLDS
     |{:map = false ; :}INICIO_ERRORS errores_posibles FINAL_ERRORS
+    |error
     ;
 errores_posibles ::=
     INICIO_ERROR inidicacion_error FINAL_ERROR
+    |error
     ;
 inidicacion_error ::=
     ;
@@ -169,7 +171,7 @@ accion ::=
     INICIO_WORLD datos_mapa FINAL_WORLD {:
     //prinFinal();
     :} accion
-    |
+    |error
     ;   
 /*****************CREAR MUNDO*************************/
 datos_mapa ::=
@@ -208,6 +210,7 @@ atributos ::=
     |{:typeSquare = ListSquare.TARGET;:}INICIO_TARGETS solo_poss FINAL_TARGETS {:addSquare();:}
     |{:typeSquare = ListSquare.PLAY;:}INICIO_PLAYER solo_poss FINAL_PLAYER {:addSquare();:}
     |{:typeSquare = ListSquare.BOX;:}INICIO_BOXES solo_poss FINAL_BOXES {:addSquare();:}
+    |error
     ;
 /*****************posicion*************************/
 solo_poss ::=
@@ -217,6 +220,7 @@ solo_poss ::=
 pos ::=
     INICIO_POSX ENTERO:a FINAL_POSX {:possX= Integer.parseInt(a);:}
     |INICIO_POSY ENTERO:a FINAL_POSY{:possY= Integer.parseInt(a);:}
+    |error
     ;
 tipo_poss_dar ::=
     tipo_poss_dar typo_poss
@@ -228,7 +232,8 @@ typo_poss ::=
     ;
 tipo_board ::=
     {:typeSquare = ListSquare.HALL;:} HALL 
-    |{:typeSquare = ListSquare.BRICK;:} BRICK  
+    |{:typeSquare = ListSquare.BRICK;:} BRICK
+    |error
     ;
 /*****************color*************************/
 bucle_color ::=
@@ -243,4 +248,5 @@ color ::=
     |INICIO_HALL_COLOR  COLOR:a FINAL_HALL_COLOR              {:if(HALL_COLOR==null){HALL_COLOR = a;}else{System.out.println("Ya esta seleccionado HALL_COLOR");}:}
     |INICIO_UNDEFINED_COLOR COLOR:a  FINAL_UNDEFINED_COLOR    {:if(UNDEFINED_COLOR==null){UNDEFINED_COLOR = a;}else{System.out.println("Ya esta seleccionado UNDEFINED_COLOR");}:}
     |INICIO_PLAYER_COLOR COLOR:a FINAL_PLAYER_COLOR           {:if(PLAY_COLOR==null){PLAY_COLOR = a;}else{System.out.println("Ya esta seleccionado PLAY_COLOR");}:}
+    |error
     ;

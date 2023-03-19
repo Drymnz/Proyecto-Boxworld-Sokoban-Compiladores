@@ -107,7 +107,9 @@ public class ReactionServer {
                     if (match == null) {
                         this.result = "no existe el map";
                     } else {
-                        this.result = (new MapToString(match)).formatXML();
+                        this.result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\t<worlds>\n";
+                        this.result += (new MapToString(match)).formatXML();
+                        this.result += "\t</worlds>";
                     }
                     break;
                 default:

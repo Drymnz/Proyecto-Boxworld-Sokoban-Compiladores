@@ -1,6 +1,7 @@
 package com.example.boxworld_sokoban.juego
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -21,11 +22,24 @@ class Juego : AppCompatActivity() {
     private var posXPlay:Int = 5
     private var posYPlay:Int = 5
     private var numBox:Int = 0
+
+    private val listadoReprotes = ArrayList<ArrayList<String>>()
+    private var listReportOperacion = ArrayList<ArrayList<String>>()
+
+    fun getListadoReport():ArrayList<ArrayList<String>>{
+        return this.listadoReprotes
+    }
+    fun setListReportOperacion(listReportOperacion : ArrayList<ArrayList<String>>)
+    {
+        this.listReportOperacion = listReportOperacion
+    }
     /**
     IMPORTANTE IMPLMEMENTAR LO DE QUE EMPUJER UNA CAJA ACTIVA, ME POSICION EN EL TAGER Y DESPUES --> PUDE SER CON UN LISTADO DE TAGET IGUAL DE MANERA
      COMO RECORA SI HAY CAJAS ACTIVAS PARA NUM BOX Y LA VICTORIA
     * */
 
+    fun getPossY():Int{return this.posYPlay}
+    fun getPossX():Int{return this.posXPlay}
     private val listBoxGameMap = ArrayList<ArrayList<BoxGame>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -440,7 +454,28 @@ class Juego : AppCompatActivity() {
     fun analisar(view: View){
         val nameTextField:AutoCompleteTextView = findViewById(R.id.TextGameMove)
         var anly:Analyze = Analyze(nameTextField.text.toString(),this)
-        anly.runAnaly()
+        findViewById<Button>(R.id.BotonCompiladorGame).setEnabled(false)
+        //anly.runAnaly()
+        anly.execute()
+    }
+
+    fun irReport(){
+        table_game.removeAllViews()
+        findViewById<AutoCompleteTextView>(R.id.TextGameMove).setVisibility(View.GONE)
+        findViewById<Button>(R.id.BotonCompiladorGame).setVisibility(View.GONE)
+        inserTableString(this.listadoReprotes)
+        inserTableString(this.listReportOperacion)
+    }
+    fun inserTableString(list : ArrayList<ArrayList<String>>){
+        for (item in list){
+            val row_one_pruea: TableRow = TableRow(this)
+            for(item_intern in item){
+                val textView:TextView = TextView(this)
+                textView.setText(item_intern)
+                row_one_pruea.addView(textView)
+            }
+            table_game.addView(row_one_pruea)
+        }
     }
 }
 

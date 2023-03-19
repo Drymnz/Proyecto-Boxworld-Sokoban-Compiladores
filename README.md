@@ -11,9 +11,8 @@ El sistema consiste en dos, una parte para el móvil con el lenguaje de kotlin r
 
 ## Socket o servidor
 
-Este servidor se activa mediante el uso de la máquina virtual de java, el proyecto fue desarrollado bajo la version 19 se aconseja como requisito dicha version, este socket o servidor tiene una ventana donde se mostrará las entradas y salidas del mismo , para notificar de forma visual lo que está pasando.
+Este servidor se activa mediante el uso de la máquina virtual de java, el proyecto fue desarrollado bajo la version 19, se aconseja como requisito dicha version, este socket o servidor tiene una ventana donde se mostrará las entradas y salidas del mismo , para notificar de forma visual lo que está pasando.
 
-### Ejecucion del socket
 
 ## Aplicacion mobil Android (kotlin)
 
@@ -61,19 +60,23 @@ Ya podría ejecutar IR AL JUEGO para iniciar el intérprete del socket. Si todo 
 
 Ahora ya se podrá ingresar los siguientes, comandos para mover el jugador, Solamente antes de ejecutar se puede realizar una simple ejecución para después será enviado a los reportes.
 
-* movimiento hacia Subir
+* Movimiento hacia la dirección Subir
 
     *    up(NUMERO_ENTERO);
 
-* movimiento hacia Abajo
+* Movimiento hacia la dirección Abajo
 
     *    down(NUMERO_ENTERO);
 
-* movimiento hacia Izquierda
+* Movimiento hacia la dirección Izquierda
 
     *    left(NUMERO_ENTERO);
 
-* movimiento hacia Derecha
+* Movimiento hacia la dirección Derecha
 
     *    right(NUMERO_ENTERO);  
+
+* Empujar caja en la direccion 
+
+    *    push (dirección) (NUMERO_ENTERO);  
 

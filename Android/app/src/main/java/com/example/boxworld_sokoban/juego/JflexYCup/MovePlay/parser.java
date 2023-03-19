@@ -8,6 +8,7 @@ package com.example.boxworld_sokoban.juego.JflexYCup.MovePlay;
 import java_cup.runtime.*;
 import java.util.ArrayList;
 import com.example.boxworld_sokoban.juego.ListMovePlay;
+import com.example.boxworld_sokoban.juego.ReportMoven;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -148,15 +149,37 @@ public class parser extends java_cup.runtime.lr_parser {
 	public parser(Lexema lexer) {
         super(lexer);
     }
-            private ArrayList<ListMovePlay> listMove = new ArrayList<>();
+            private ArrayList<ReportMoven> listMove = new ArrayList<>();
+
             private ListMovePlay tipoMovimiento;
             private int contador;
             private int errorCounter;
+            private ArrayList<ArrayList<String>> listMath = new ArrayList<>();
 
-            public ArrayList<ListMovePlay> getListMoveGame(){
-                return this.listMove;
-            }
+            public ArrayList<ReportMoven> getListMoveGame(){
+                            return this.listMove;
+                        }
+                        public ArrayList<ArrayList<String>> getListMath(){
+                                                    return this.listMath;
+                                                }
 
+private void addListMath(String type,String a,String b){
+              if (listMath.isEmpty()) {
+                  ArrayList<String> rowTi = new ArrayList<>();
+                  rowTi.add("--Reporte de operadores matemáticos--");
+                  listMath.add(rowTi);
+                  ArrayList<String> row = new ArrayList<>();
+                  row.add("Operador");
+                  row.add("Línea");
+                  row.add("Columna");
+                  listMath.add(row);
+              }
+    ArrayList<String> row = new ArrayList<>();
+    row.add(type);
+    row.add((cur_token.left+1)+"");
+    row.add((cur_token.right+1)+"");
+    listMath.add(row);
+}
     public void syntax_error(Symbol cur_token) {
         errorCounter++;
         System.out.println("\n"+errorCounter+" - Clase<"+"> en simbolo<" + sym.terminalNames[cur_token.sym]+String.format(">posicion: <%d>, <%d>", (cur_token.left+1), (cur_token.right+1)));
@@ -276,7 +299,7 @@ class CUP$parser$actions {
                                                 }
                                     for(int i = 0; i <contador; i++)
                                     {
-                                        listMove.add(tipoMovimiento);
+                                        listMove.add(new ReportMoven((cur_token.right+1),(cur_token.left+1),sym.terminalNames[cur_token.sym],tipoMovimiento));
                                     }
     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo_mover",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -325,7 +348,7 @@ class CUP$parser$actions {
                                        }
                             for(int i = 0; i <contador; i++)
                             {
-                                listMove.add(tipoMovimiento);
+                                listMove.add(new ReportMoven((cur_token.right+1),(cur_token.left+1),sym.terminalNames[cur_token.sym],tipoMovimiento));
                             }
         
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo_mover",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -443,6 +466,7 @@ class CUP$parser$actions {
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
                     double resultado = numeroUno+numeroDos;
+                    addListMath("Suma",a,b);
                     RESULT = String.valueOf(resultado);
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -463,6 +487,7 @@ class CUP$parser$actions {
                 double numeroUno= Double.valueOf(a);
                 double numeroDos= Double.valueOf(b);
                 double resultado = numeroUno-numeroDos;
+                addListMath("Resta",a,b);
                 RESULT = String.valueOf(resultado);
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -483,6 +508,7 @@ class CUP$parser$actions {
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
                     double resultado = numeroUno/numeroDos;
+                    addListMath("Division",a,b);
                     RESULT = String.valueOf(resultado);
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -503,6 +529,7 @@ class CUP$parser$actions {
                     double numeroUno= Double.valueOf(a);
                     double numeroDos= Double.valueOf(b);
                     double resultado = numeroUno*numeroDos;
+                    addListMath("Multiplicacion",a,b);
                     RESULT = String.valueOf(resultado);
                     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("o",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);

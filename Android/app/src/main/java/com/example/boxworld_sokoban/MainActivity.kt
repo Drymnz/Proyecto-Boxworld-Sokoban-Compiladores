@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
         val reader: Reader = StringReader(text)
         val Lexico = LexicoXML(reader)
         val sic = SicXML(Lexico)
+        Log.d("Ver",text)
         try {
             sic.parse()
             System.out.println(Lexico.getReport())
@@ -99,10 +100,9 @@ class MainActivity : AppCompatActivity(), AsyncResponse {
      * */
     fun irJuego(sic: SicXML){
         val map : Map = SicXMLToMap(sic).getReturnFinal()
-        val list:ArrayList<com.example.boxworld_sokoban.juego.JflexYCup.xml.Map.Map> = ArrayList()
-        list.add(map)
         val intent = Intent(this, Juego::class.java)
         intent.putExtra("listado_reportes_mate", map)//send map
+        //intent.putExtra("listado_reportes_mate", map)//send list aritmetica
         startActivity(intent)
     }
 

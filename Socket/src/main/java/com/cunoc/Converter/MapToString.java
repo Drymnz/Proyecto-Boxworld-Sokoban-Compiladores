@@ -44,10 +44,12 @@ public class MapToString {
         String returnFinal = "\n";
         for (ArrayList<Square> item_list : this.converter.getMatrix()) {
             for (Square item_Square : item_list) {
-                returnFinal += startTypeBox(item_Square.getType());
-                returnFinal += "\t"+this.waxSimple(item_Square.getPossX() + "", "posX");
-                returnFinal += "\t"+this.waxSimple(item_Square.getPossY() + "", "posY");
-                returnFinal += endTypeBox(item_Square.getType());
+                if (item_Square.getType() != ListSquare.UNDEFINED) {
+                    returnFinal += startTypeBox(item_Square.getType());
+                    returnFinal += "\t"+this.waxSimple(item_Square.getPossX() + "", "posX");
+                    returnFinal += "\t"+this.waxSimple(item_Square.getPossY() + "", "posY");
+                    returnFinal += endTypeBox(item_Square.getType());
+                }
             }
         }
         return returnFinal;
